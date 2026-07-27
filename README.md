@@ -1,4 +1,27 @@
-<!-- Top Bar Informasi Cepat -->
+<!DOCTYPE html>
+<html lang="in">
+<head>
+    <meta charset="UTF-8">
+    <title>Judul halaman</title>
+</head>
+<body>
+</body>
+</html><!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revscoll Store - Grosir & Eceran Sepatu Terpercaya</title>
+    <!-- Font Awesome Professional / Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS Terpisah -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Bar Informasi Cepat -->
     <div class="top-bar">
         <div class="container top-bar-inner">
             <div class="top-bar-left">
