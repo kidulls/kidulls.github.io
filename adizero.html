@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adizero Evo SL Premium - Revscoll Store</title>
+    <style>
+        /* --- RESET & BASIC STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #000000;
+            --accent-color: #ff3838;
+            --accent-hover: #e02e2e;
+            --bg-light: #f8f9fa;
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: #2d3436;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        /* --- NAVBAR & TOP HEADER --- */
+        .top-bar {
+            background: linear-gradient(90deg, #111, #222);
+            color: #fff;
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative; /* Memastikan tidak menutupi menu utama (non-fixed) */
+            z-index: 100;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .btn-home {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-home:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .brand-logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .brand-logo span {
+            color: var(--accent-color);
+        }
+
+        /* --- CONTAINER UTAMA --- */
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* --- HERO & PRODUCT SHOWCASE --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+        }
+
+        /* Product Visual / Display */
+        .product-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #f0f0f0 0%, #e0e0e0 100%);
+            border-radius: 16px;
+            padding: 40px 20px;
+            overflow: hidden;
+        }
+
+        .badge-discount {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 6px 14px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            border-radius: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .shoe-placeholder {
+            width: 100%;
+            max-width: 320px;
+            height: 220px;
+            background: #111;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: rotate(-5deg);
+            transition: var(--transition);
+        }
+
+        .product-visual:hover .shoe-placeholder {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        /* Product Details */
+        .product-details h1 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .price-tag {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #a0a0a0;
+            font-size: 1.1rem;
+        }
+
+        .final-price {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+
+        /* --- PROMO & BENEFITS SECTIONS --- */
+        .promo-banner {
+            background: #fff0f0;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #c0392b;
+            font-weight: 600;
+        }
+
+        .product-description {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        /* --- SELECTION FORM (VARIAN & SIZE) --- */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .variant-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+        }
+
+        .variant-btn {
+            background: #f1f2f6;
+            border: 2px solid transparent;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .variant-btn:hover {
+            background: #e4e7eb;
+        }
+
+        .variant-btn.active {
+            border-color: var(--primary-color);
+            background: #111;
+            color: #fff;
+        }
+
+        .size-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .size-btn {
+            width: 45px;
+            height: 45px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .size-btn:hover {
+            border-color: var(--primary-color);
+        }
+
+        .size-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        /* --- USER DATA INPUTS --- */
+        .checkout-section {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #eee;
+            margin-top: 25px;
+        }
+
+        .checkout-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(255, 56, 56, 0.2);
+        }
+
+        textarea.input-field {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #25d366; /* WhatsApp Green */
+            color: #fff;
+            border: none;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+        }
+
+        /* --- FEATURES/STORE PROMO --- */
+        .store-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            border-bottom-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .feature-card h4 {
+            font-size: 1rem;
+            margin: 10px 0 5px 0;
+        }
+
+        .feature-card p {
+            font-size: 0.85rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV / TOP HEADER -->
+    <header class="top-bar">
+        <a href="web-master.html" class="btn-home">
+            &#8592; Beranda
+        </a>
+        <div class="brand-logo">REVSCOLL <span>STORE</span></div>
+    </header>
+
+    <div class="container">
+        <!-- PRODUCT SHOWCASE -->
+        <div class="product-grid">
+            
+            <!-- VISUAL FOTO -->
+            <div class="product-visual">
+                <span class="badge-discount">DISKON 50%</span>
+                <!-- Placeholder untuk sepatu (bisa diganti dengan tag <img>) -->
+           <img src="adizero-banner.png" style="max-width: 100%; height: auto;">       
+                    ADIZERO EVO SL<br><small style="font-size:0.8rem; font-weight:normal;" id="colorLabel">Hitam List Putih</small>
+                </div>
+            </div>
+
+            <!-- DETAIL & FORM -->
+            <div class="product-details">
+                <h1>Adizero Evo SL Premium</h1>
+                
+                <div class="price-tag">
+                    <span class="original-price">Rp 358.000</span>
+                    <span class="final-price" id="displayPrice">Rp 179.000</span>
+                </div>
+
+                <div class="promo-banner">
+                    🔥 Promo Terbatas! Kualitas Premium dengan potongan harga khusus hari ini dari Revscoll Store.
+                </div>
+
+                <div class="product-description">
+                    <strong>Deskripsi Produk:</strong><br>
+                    Sepatu Adizero Evo SL Premium menghadirkan kenyamanan maksimal dan desain *sporty* yang ringan. Dirancang menggunakan material *breathable mesh* berkualitas tinggi, sangat cocok untuk aktivitas harian, *jogging*, maupun pelengkap gaya kasual Anda.
+                </div>
+
+                <!-- PILIH VARIAN COLOR -->
+                <div class="form-group">
+                    <label>Pilih Warna Varian:</label>
+                    <div class="variant-options">
+                        <button type="button" class="variant-btn active" onclick="selectVariant(this, 'Hitam List Putih')"><img src="adzr-htm-pth.png" style="max-width: 100%; height: auto;">   </button>
+                        <button type="button" class="variant-btn" onclick="selectVariant(this, 'Hitam List Silver')"><img src="adzr-htm-silver.png" style="max-width: 100%; height: auto;">  </button>
+                        <button type="button" class="variant-btn" onclick="selectVariant(this, 'Hitam List Merah')"><img src="adizero-hitam-merah.png" style="max-width: 100%; height: auto;">   </button>
+                        <button type="button" class="variant-btn" onclick="selectVariant(this, 'Hitam List Stabilo')"><img src="adizero-hitam-stabilo.png" style="max-width: 100%; height: auto;">    </button>
+                        <button type="button" class="variant-btn" onclick="selectVariant(this, 'Putih List Hitam')"><img src="adizero-putih-hitam.png" style="max-width: 100%; height: auto;">  </button>
+                        <button type="button" class="variant-btn" onclick="selectVariant(this, 'Putih List Merah')"><img src="adizero-putih-merah.png" style="max-width: 100%; height: auto;">  </button>
+                    </div>
+                </div>
+
+                <!-- PILIH UKURAN -->
+                <div class="form-group">
+                    <label>Pilih Ukuran (EUR):</label>
+                    <div class="size-options">
+                        <button type="button" class="size-btn" onclick="selectSize(this, '36')">36</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, '37')">37</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, '38')">38</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, '39')">39</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, '40')">40</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, '41')">41</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, '42')">42</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, '43')">43</button>
+                    </div>
+                </div>
+
+                <!-- FORM PEMESANAN / DATA DIRI -->
+                <div class="checkout-section">
+                    <h3>Lengkapi Data Pengiriman</h3>
+                    <form id="orderForm" onsubmit="sendToWhatsApp(event)">
+                        <input type="text" id="custName" class="input-field" placeholder="Nama Lengkap" required>
+                        <input type="tel" id="custPhone" class="input-field" placeholder="Nomor Telepon / WA" required>
+                        <textarea id="custAddress" class="input-field" placeholder="Alamat Lengkap (Jalan, RT/RW, Kec, Kota, Kode Pos)" required></textarea>
+                        
+                        <button type="submit" class="btn-submit">
+                            Beli Sekarang Via WhatsApp
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- KEUNGGULAN TOKO (REVSCOLL STORE PROMO) -->
+        <div class="store-features">
+            <div class="feature-card">
+                <h4>Kualitas Premium</h4>
+                <p>Bahan pilihan, pengerjaan rapi, tahan lama, dan nyaman dipakai seharian.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Pengiriman Cepat</h4>
+                <p>Pesanan langsung diproses dan dikirim rapi ke alamat Anda.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Garansi Revscoll</h4>
+                <p>Layanan ramah dan bantuan cepat langsung via WhatsApp admin.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT INTERAKTIF & INTEGRASI WHATSAPP -->
+    <script>
+        // Perhitungan Harga Diskon 50%
+        const originalPrice = 358000;
+        const discountRate = 0.50;
+        const finalPrice = originalPrice * discountRate; // Rp 179.000
+
+        // Format angka ke mata uang Rupiah
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+        }
+
+        // Tampilkan harga hasil diskon
+        document.getElementById('displayPrice').innerText = formatRupiah(finalPrice);
+
+        // State Varian dan Size Terpilih
+        let selectedVariant = "Hitam List Putih";
+        let selectedSize = "";
+
+        // Fungsi Memilih Varian Warna
+        function selectVariant(element, variantName) {
+            document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            selectedVariant = variantName;
+            
+            // Ubah text visual display
+            document.getElementById('colorLabel').innerText = variantName;
+        }
+
+        // Fungsi Memilih Size
+        function selectSize(element, sizeNumber) {
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            selectedSize = sizeNumber;
+        }
+
+        // Fungsi Integrasi WhatsApp
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            // Validasi apakah ukuran sudah dipilih
+            if (!selectedSize) {
+                alert("Harap pilih ukuran (size) sepatu terlebih dahulu!");
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+
+            const waNumber = "628987686501"; // Format internasional tanpa angka 0 di depan
+
+            // Format Pesan WhatsApp
+            const message = 
+`Halo Revscoll Store, saya ingin memesan sepatu berikut:
+
+*Detail Pesanan:*
+• Produk: Adizero Evo SL Premium
+• Varian Warna: ${selectedVariant}
+• Ukuran: ${selectedSize}
+• Harga (Diskon 50%): ${formatRupiah(finalPrice)}
+
+*Data Pembeli:*
+• Nama: ${name}
+• No. HP: ${phone}
+• Alamat Lengkap: ${address}
+
+Mohon diproses pesanan saya. Terima kasih!`;
+
+            // Encode string untuk URL WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+
+            // Redirect ke WhatsApp
+            window.open(waUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
