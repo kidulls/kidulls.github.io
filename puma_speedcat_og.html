@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUMA Speedcat OG Premium - Official Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archive+Narrow:wght@400;700&family=Montserrat:ital,wght@0,300;0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --puma-black: #0d0d0d;
+            --puma-dark-grey: #1a1a1a;
+            --puma-card-bg: #151518;
+            --puma-red: #e10600;
+            --puma-gold: #d4af37;
+            --puma-white: #ffffff;
+            --puma-text-grey: #a0a0a0;
+            --puma-pink: #ff69b4;
+            --puma-blue: #38b6ff;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--puma-black);
+            color: var(--puma-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Watermark Background Logo Puma */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 120vw;
+            height: 120vh;
+            transform: translate(-50%, -50%) rotate(-12deg);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23ffffff'%3E%3Cpath opacity='0.035' d='M88.5 28.1c-1.8-2.2-4.5-3.8-7.5-4.2-1.2-.2-2.5 0-3.6.4-1.8.7-3.2 2.1-4.1 3.8-1.5 2.8-1.8 6.1-1.1 9.2.5 2.1 1.6 4.1 3.2 5.5 1.5 1.4 3.5 2.2 5.6 2.2h.5c2.3 0 4.5-.8 6.1-2.4 1.8-1.8 2.8-4.2 2.8-6.8 0-2.8-1.1-5.4-2.9-7.3zM25 65c2-4 5-8 9-11 5-4 11-6 17-6 8 0 16 3 22 9 3 3 5 7 6 11 1 5 0 10-2 14-3 5-8 9-14 11-6 2-13 2-19 0-6-2-11-6-15-11-3-4-4-9-4-17zm55-45c-2-2-5-3-8-3-4 0-8 2-10 5-3 4-4 9-3 14 1 4 3 8 7 10 3 2 7 3 11 2 4-1 8-3 10-7 2-4 2-9 0-13-2-4-5-6-7-8z'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 260px 260px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Motifs & Carbon Pattern Overlay */
+        .carbon-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(black 15%, transparent 16%) 0 0,
+                radial-gradient(black 15%, transparent 16%) 8px 8px,
+                radial-gradient(rgba(255,255,255,.03) 15%, transparent 20%) 0 1px,
+                radial-gradient(rgba(255,255,255,.03) 15%, transparent 20%) 8px 9px;
+            background-color: #0d0d10;
+            background-size: 16px 16px;
+            z-index: 0;
+        }
+
+        /* Checkered Motorsport Racing Strip Top/Bottom */
+        .racing-stripe {
+            height: 6px;
+            width: 100%;
+            background: linear-gradient(90deg, 
+                var(--puma-red) 0%, var(--puma-red) 25%, 
+                #fff 25%, #fff 50%, 
+                var(--puma-black) 50%, var(--puma-black) 75%,
+                var(--puma-red) 75%, var(--puma-red) 100%);
+            background-size: 40px 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header Layout */
+        header {
+            position: relative;
+            z-index: 2;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            background: rgba(13, 13, 13, 0.75);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .puma-logo-svg {
+            width: 55px;
+            height: 35px;
+            fill: var(--puma-white);
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.2));
+        }
+
+        .brand-title {
+            font-family: 'Archive Narrow', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-motorsport {
+            background: var(--puma-red);
+            color: #fff;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            transform: skewX(-12deg);
+            display: inline-block;
+        }
+
+        /* Main Container */
+        main {
+            position: relative;
+            z-index: 2;
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .product-card {
+            background: rgba(21, 21, 24, 0.85);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (max-width: 968px) {
+            .product-card {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+        }
+
+        /* Left Side: Showcase Visual */
+        .showcase-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle, rgba(40,40,45,0.6) 0%, rgba(15,15,18,0.9) 100%);
+            border-radius: 12px;
+            padding: 30px 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .racing-grid-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.15;
+            background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .shoe-display-container {
+            width: 100%;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.4s ease;
+        }
+
+        .shoe-display-container:hover {
+            transform: scale(1.03) rotate(-2deg);
+        }
+
+        .shoe-svg-graphic {
+            width: 90%;
+            max-width: 440px;
+            filter: drop-shadow(0 25px 20px rgba(0,0,0,0.7));
+            transition: all 0.4s ease;
+        }
+
+        .watermark-speedcat {
+            position: absolute;
+            font-size: 5.5rem;
+            font-weight: 900;
+            color: rgba(255,255,255,0.03);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-style: italic;
+            user-select: none;
+            z-index: 0;
+            top: 20px;
+            left: 20px;
+        }
+
+        /* Right Side: Product Details */
+        .details-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-header-info h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .product-subtitle {
+            color: var(--puma-text-grey);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-subtitle::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--puma-red);
+            border-radius: 50%;
+        }
+
+        /* Dynamic Price Box */
+        .price-tag-wrapper {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border-left: 4px solid var(--puma-red);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .current-price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--puma-white);
+            letter-spacing: -0.5px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--puma-text-grey);
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        .promo-badge {
+            background: #22c55e;
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            display: none;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Variant Color Selection */
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            color: #d1d1d1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .color-btn {
+            background: rgba(255,255,255,0.04);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 12px 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+        }
+
+        .color-btn:hover {
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        .color-btn.active {
+            border-color: var(--puma-red);
+            background: rgba(225, 6, 0, 0.12);
+            box-shadow: 0 0 15px rgba(225, 6, 0, 0.3);
+        }
+
+        .color-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Specific Swatch Colors */
+        .swatch-hitam { background: linear-gradient(135deg, #111 60%, #fff 60%); }
+        .swatch-merah { background: linear-gradient(135deg, #d32f2f 60%, #fff 60%); }
+        .swatch-biru { background: linear-gradient(135deg, #38b6ff 60%, #fff 60%); }
+        .swatch-pink { background: linear-gradient(135deg, #ff69b4 60%, #fff 60%); }
+
+        .color-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-align: center;
+            color: #ddd;
+        }
+
+        /* Size Selection */
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .size-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--puma-white);
+            padding: 12px 0;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+        }
+
+        .size-btn:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .size-btn.active {
+            background: var(--puma-white);
+            color: var(--puma-black);
+            border-color: var(--puma-white);
+            font-weight: 900;
+            box-shadow: 0 0 12px rgba(255,255,255,0.4);
+        }
+
+        .size-btn.special-price-indicator::after {
+            content: "SALE";
+            position: absolute;
+            top: -6px;
+            right: -4px;
+            background: #22c55e;
+            color: #000;
+            font-size: 0.55rem;
+            font-weight: 900;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        /* Description Box */
+        .description-box {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 25px;
+            min-height: 110px;
+        }
+
+        .description-content {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #ccc;
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .description-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CTA Button */
+        .buy-now-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #e10600 0%, #b30000 100%);
+            color: var(--puma-white);
+            border: none;
+            padding: 18px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(225, 6, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .buy-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(225, 6, 0, 0.6);
+            background: linear-gradient(135deg, #ff1a1a 0%, #cc0000 100%);
+        }
+
+        .buy-now-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Guarantee Badges */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 1.3rem;
+            margin-bottom: 6px;
+            color: var(--puma-red);
+        }
+
+        .feature-text {
+            font-size: 0.75rem;
+            color: var(--puma-text-grey);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 25px 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            background: rgba(10, 10, 10, 0.9);
+            font-size: 0.8rem;
+            color: var(--puma-text-grey);
+        }
+
+        footer strong {
+            color: var(--puma-white);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carbon-pattern"></div>
+    <div class="racing-stripe"></div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo-container">
+            <svg class="puma-logo-svg" viewBox="0 0 100 60">
+                <path d="M78.3 12.2c-3.1-2.8-7.8-4.2-12.8-3.5-5 .7-9.4 3.6-11.9 7.8-1.5 2.5-2.2 5.4-2.1 8.3.1 2.9 1 5.8 2.6 8.2 2.8 4.2 7.6 6.8 12.7 6.8 1.8 0 3.7-.3 5.4-1 3.2-1.3 5.8-3.8 7.2-6.9 1.4-3.1 1.5-6.6.3-9.8-1.1-3.2-3.4-6.1-6.4-7.9zM20.5 45.1c3.5-7.1 8.8-13 15.6-17.2 7.1-4.4 15.3-6.6 23.6-6.4 11.2.3 21.8 4.9 29.8 12.8 2.5 2.5 4.6 5.4 6.2 8.5 1.5 3.1 2.3 6.5 2.2 9.9-.1 3.5-1.1 6.9-2.9 9.8-3.4 5.5-8.8 9.5-15.1 11.2-6.3 1.7-13 .9-18.8-2.2-5.8-3.1-10.2-8.1-12.4-14.3-1.4-3.9-1.8-8.1-1.2-12.1z"/>
+                <path d="M92.1 8.5c-2.2-.8-4.7-.7-6.8.3-2.1 1-3.7 2.8-4.4 5-.7 2.2-.4 4.7.7 6.7 1.1 2 3 3.4 5.2 3.9h.8c2.4 0 4.7-.9 6.3-2.5 1.7-1.6 2.6-3.9 2.5-6.2-.1-2.4-1.2-4.6-2.9-6.1-1.1-1-2.5-1.7-3.9-1.8z"/>
+            </svg>
+            <div class="brand-title">Koleksi terbaik kami</div>
+        </div>
+        <a href="web-master.html">KEMBALI KE BERANDA</a>
+    </header>
+    <!-- Main Content -->
+    <main>
+        <div class="watermark-revscoll">biru selalu di buru</div>   
+  <img src="puma-biru.png" style="max-width: 100%; height: auto;"> 
+                                    <div class="watermark-revscoll">hitam mempesona</div>   
+  <img src="puma-black-white.png" alt="puma-speedcat-hitam-putih" style="max-width: 100%; height: auto;">          
+<div class="showcase-section">
+                <div class="watermark-revscoll">merah darah pemberani</div>
+    <img src="puma-merah.png" style="max-width: 100%; height: auto;"> 
+        <div class="watermark-revscoll">cantik anggun mempesona</div>    
+     <img src="puma-pink.png" style="max-width: 100%; height: auto;">         
+                        </div>
+ <!-- SVG Visuals corresponding to color variants -->
+                    
+                    <!-- 1. Hitam Putih -->
+                    <svg id="shoe-hitam" class="shoe-svg-graphic" viewBox="0 0 500 260">
+                        <defs>
+                            <linearGradient id="blackSuede" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#2a2a2e"/>
+                                <stop offset="100%" stop-color="#111113"/>
+                            </linearGradient>
+                            <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+                                <feDropShadow dx="0" dy="12" stdDeviation="8" flood-opacity="0.5"/>
+                            </filter>
+                        </defs>
+                        <!-- Sole Wrap -->
+                        <path d="M 40 195 Q 120 205 250 205 Q 380 205 465 185 Q 475 180 470 165 Q 455 170 380 180 Q 250 182 120 180 Q 50 178 35 182 Z" fill="#1e1e20"/>
+                        <path d="M 30 185 C 40 215 100 220 250 220 C 390 220 470 200 480 180 C 485 170 470 165 450 175 C 380 192 250 195 100 190 Z" fill="#0d0d0e"/>
+                        <!-- Main Upper -->
+                        <path d="M 40 180 C 35 150 50 120 90 100 C 140 80 220 95 280 105 C 330 115 390 110 425 135 C 455 155 470 170 460 180 C 400 190 250 190 40 180 Z" fill="url(#blackSuede)" filter="url(#shadow)"/>
+                        <!-- Speedcat Formstrip (Signature White) -->
+                        <path d="M 120 145 C 180 120 280 125 435 160 C 390 168 280 165 180 168 C 140 169 110 160 120 145 Z" fill="#ffffff"/>
+                        <path d="M 125 147 C 185 125 280 130 420 161 C 385 166 280 163 182 165 C 145 166 118 158 125 147 Z" fill="#f0f0f0"/>
+                        <!-- Gold Puma Branding -->
+                        <path d="M 150 115 Q 155 110 160 115 Q 155 120 150 115" fill="#d4af37"/>
+                        <text x="170" y="122" fill="#d4af37" font-size="10" font-weight="900" font-family="Montserrat">PUMA</text>
+                        <text x="75" y="140" fill="#ffffff" font-size="8" font-weight="800">SPEEDCAT</text>
+                        <!-- Heel & Toe Overlay Details -->
+                        <path d="M 40 180 C 35 160 45 135 65 120 C 85 150 70 175 40 180 Z" fill="#222225"/>
+                        <path d="M 420 140 C 445 155 465 170 460 180 C 440 180 410 165 420 140 Z" fill="#222225"/>
+                    </svg>
+
+                    <!-- 2. Merah -->
+                    <svg id="shoe-merah" class="shoe-svg-graphic" viewBox="0 0 500 260" style="display:none;">
+                        <defs>
+                            <linearGradient id="redSuede" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#e10600"/>
+                                <stop offset="100%" stop-color="#990000"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M 40 195 Q 120 205 250 205 Q 380 205 465 185 Q 475 180 470 165 Q 455 170 380 180 Q 250 182 120 180 Q 50 178 35 182 Z" fill="#1e1e20"/>
+                        <path d="M 30 185 C 40 215 100 220 250 220 C 390 220 470 200 480 180 C 485 170 470 165 450 175 C 380 192 250 195 100 190 Z" fill="#0d0d0e"/>
+                        <path d="M 40 180 C 35 150 50 120 90 100 C 140 80 220 95 280 105 C 330 115 390 110 425 135 C 455 155 470 170 460 180 C 400 190 250 190 40 180 Z" fill="url(#redSuede)" filter="url(#shadow)"/>
+                        <path d="M 120 145 C 180 120 280 125 435 160 C 390 168 280 165 180 168 C 140 169 110 160 120 145 Z" fill="#ffffff"/>
+                        <text x="170" y="122" fill="#d4af37" font-size="10" font-weight="900">PUMA</text>
+                        <text x="75" y="140" fill="#ffffff" font-size="8" font-weight="800">SPEEDCAT</text>
+                        <path d="M 40 180 C 35 160 45 135 65 120 C 85 150 70 175 40 180 Z" fill="#b30000"/>
+                    </svg>
+
+                    <!-- 3. Biru Muda -->
+                    <svg id="shoe-biru" class="shoe-svg-graphic" viewBox="0 0 500 260" style="display:none;">
+                        <defs>
+                            <linearGradient id="blueSuede" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#5ec5ff"/>
+                                <stop offset="100%" stop-color="#1d82cc"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M 40 195 Q 120 205 250 205 Q 380 205 465 185 Q 475 180 470 165 Q 455 170 380 180 Q 250 182 120 180 Q 50 178 35 182 Z" fill="#1e1e20"/>
+                        <path d="M 30 185 C 40 215 100 220 250 220 C 390 220 470 200 480 180 C 485 170 470 165 450 175 C 380 192 250 195 100 190 Z" fill="#0d0d0e"/>
+                        <path d="M 40 180 C 35 150 50 120 90 100 C 140 80 220 95 280 105 C 330 115 390 110 425 135 C 455 155 470 170 460 180 C 400 190 250 190 40 180 Z" fill="url(#blueSuede)" filter="url(#shadow)"/>
+                        <path d="M 120 145 C 180 120 280 125 435 160 C 390 168 280 165 180 168 C 140 169 110 160 120 145 Z" fill="#ffffff"/>
+                        <text x="170" y="122" fill="#111111" font-size="10" font-weight="900">PUMA</text>
+                        <text x="75" y="140" fill="#ffffff" font-size="8" font-weight="800">SPEEDCAT</text>
+                        <path d="M 40 180 C 35 160 45 135 65 120 C 85 150 70 175 40 180 Z" fill="#1d82cc"/>
+                    </svg>
+
+                    <!-- 4. Pink -->
+                    <svg id="shoe-pink" class="shoe-svg-graphic" viewBox="0 0 500 260" style="display:none;">
+                        <defs>
+                            <linearGradient id="pinkSuede" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ff85c0"/>
+                                <stop offset="100%" stop-color="#d81b60"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M 40 195 Q 120 205 250 205 Q 380 205 465 185 Q 475 180 470 165 Q 455 170 380 180 Q 250 182 120 180 Q 50 178 35 182 Z" fill="#1e1e20"/>
+                        <path d="M 30 185 C 40 215 100 220 250 220 C 390 220 470 200 480 180 C 485 170 470 165 450 175 C 380 192 250 195 100 190 Z" fill="#0d0d0e"/>
+                        <path d="M 40 180 C 35 150 50 120 90 100 C 140 80 220 95 280 105 C 330 115 390 110 425 135 C 455 155 470 170 460 180 C 400 190 250 190 40 180 Z" fill="url(#pinkSuede)" filter="url(#shadow)"/>
+                        <path d="M 120 145 C 180 120 280 125 435 160 C 390 168 280 165 180 168 C 140 169 110 160 120 145 Z" fill="#ffffff"/>
+                        <text x="170" y="122" fill="#ffffff" font-size="10" font-weight="900">PUMA</text>
+                        <text x="75" y="140" fill="#ffffff" font-size="8" font-weight="800">SPEEDCAT</text>
+                        <path d="M 40 180 C 35 160 45 135 65 120 C 85 150 70 175 40 180 Z" fill="#ad1457"/>
+                    </svg>
+
+                </div>
+            </div>
+
+            <!-- Right: Interactive Product Configuration -->
+            <div class="details-section">
+                <div>
+                    <div class="product-header-info">
+                        <h1>PUMA SPEEDCAT OG PREMIUM</h1>
+                        <div class="product-subtitle">Produk best seller REVSCOLL STORE</div>
+                    </div>
+
+                    <!-- Price Box -->
+                    <div class="price-tag-wrapper" id="priceContainer">
+                        <div class="current-price" id="displayPrice">Rp 185.000</div>
+                        <div class="original-price" id="originalPrice">Rp 185.000</div>
+                        <div class="promo-badge" id="promoBadge">SPECIAL PROMO!</div>
+                    </div>
+
+                    <!-- Color Selection -->
+                    <div class="section-label">
+                        <span>Pilih Varian Warna</span>
+                        <span id="selectedColorLabel" style="color:var(--puma-red); font-weight:800;">Hitam Putih</span>
+                    </div>
+                    <div class="color-options">
+                        <button class="color-btn active" data-color="hitam" onclick="selectColor('hitam', 'Hitam Putih')">
+                            <div class="color-swatch swatch-hitam"></div>
+                            <span class="color-name">Hitam Putih</span>
+                        </button>
+                        <button class="color-btn" data-color="merah" onclick="selectColor('merah', 'Merah')">
+                            <div class="color-swatch swatch-merah"></div>
+                            <span class="color-name">Merah</span>
+                        </button>
+                        <button class="color-btn" data-color="biru" onclick="selectColor('biru', 'Biru Muda')">
+                            <div class="color-swatch swatch-biru"></div>
+                            <span class="color-name">Biru Muda</span>
+                        </button>
+                        <button class="color-btn" data-color="pink" onclick="selectColor('pink', 'Pink')">
+                            <div class="color-swatch swatch-pink"></div>
+                            <span class="color-name">Pink</span>
+                        </button>
+                    </div>
+
+                    <!-- Size Selection -->
+                    <div class="section-label">
+                        <span>Pilih Ukuran (EUR)</span>
+                        <span id="selectedSizeLabel" style="color:#aaa;">Pilih Ukuran</span>
+                </div><div class="size-grid"> 
+                    <button class="size-btn" data-size="36" onclick="selectSize('39')">36</button>
+                    <button class="size-btn" data-size="37" onclick="selectSize('39')">37</button>
+                    <button class="size-btn" data-size="38" onclick="selectSize('39')">38</button>
+                        <button class="size-btn" data-size="39" onclick="selectSize('39')">39</button>
+                        <button class="size-btn" data-size="40" onclick="selectSize('40')">40</button>
+                        <button class="size-btn" data-size="41" onclick="selectSize('41')">41</button>
+                        <button class="size-btn" id="size-42" data-size="42" onclick="selectSize('42')">42</button>
+                        <button class="size-btn" id="size-43" data-size="43" onclick="selectSize('43')">43</button>
+                        <button class="size-btn" data-size="44" onclick="selectSize('44')">44</button>
+                    </div>
+
+                    <!-- Description Section per Variant -->
+                    <div class="section-label">Deskripsi Produk</div>
+                    <div class="description-box">
+                        <div id="desc-hitam" class="description-content active">
+                            <strong>Speedcat OG Premium - Hitam Putih:</strong> Varian klasik ikonik dengan material premium suede berwarna hitam pekat yang dipadukan dengan aksen khas Puma Formstrip putih bersih. Sol karet bergaya balap memberikan cengkeraman maksimal dan kenyamanan ekstra untuk pemakaian harian maupun streetwear bold modern.
+                        </div>
+                        <div id="desc-merah" class="description-content">
+                            <strong>Speedcat OG Premium - Merah Motorsport:</strong> Mengusung semangat lintasan balap F1 yang membara, varian merah ini dibalut suede berkualitas tinggi berwarna merah terang dengan kontras strip putih. Desain aerodinamis yang ramping mempertegas gaya sporty dan percaya diri di setiap langkah.
+                        </div>
+                        <div id="desc-biru" class="description-content">
+                            <strong>Speedcat OG Premium - Biru Muda:</strong> Tampil fresh dan trendi dengan sentuhan warna Biru Muda (Light Blue) yang bernuansa retro-modern. Bahan suede super lembut memberikan fleksibilitas tinggi, dipadu dengan detail logo Puma keemasan untuk kesan premium yang santai namun elegan.
+                        </div>
+                        <div id="desc-pink" class="description-content">
+                            <strong>Speedcat OG Premium - Pink (Special Edition):</strong> Sentuhan manis nan berani dengan balutan suede warna Pink eksklusif. Tetap mempertahankan siluet motorsport legendaris Puma dengan kenyamanan tinggi. <em>Dapatkan penawaran khusus diskon hemat untuk ukuran 42 dan 43!</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div>
+                    <button class="buy-now-btn" onclick="checkout()">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                        Beli Sekarang
+                    </button>
+
+                    <!-- Features -->
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">⚡</div>
+                            <div class="feature-text">100% Original Premium</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🏎️</div>
+                            <div class="feature-text">Motorsport Tread Sole</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📦</div>
+                            <div class="feature-text">Free Shipping Box</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="racing-stripe" style="margin-bottom:20px;"></div>
+        <p>&copy; 2026 <strong>PUMA Official Store</strong>. Speedcat OG Premium Collection. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        let currentVariant = 'hitam';
+        let selectedSize = null;
+
+        function updatePrice() {
+            const priceDisplay = document.getElementById('displayPrice');
+            const originalPriceDisplay = document.getElementById('originalPrice');
+            const promoBadge = document.getElementById('promoBadge');
+            const priceContainer = document.getElementById('priceContainer');
+
+            // Exception rule: Pink variant size 42 & 43 = Rp 120.000
+            if (currentVariant === 'pink' && (selectedSize === '42' || selectedSize === '43')) {
+                priceDisplay.textContent = 'Rp 120.000';
+                originalPriceDisplay.textContent = 'Rp 185.000';
+                originalPriceDisplay.style.display = 'inline';
+                promoBadge.style.display = 'inline-block';
+                priceContainer.style.borderColor = '#22c55e';
+            } else {
+                priceDisplay.textContent = 'Rp 185.000';
+                originalPriceDisplay.style.display = 'none';
+                promoBadge.style.display = 'none';
+                priceContainer.style.borderColor = 'var(--puma-red)';
+            }
+        }
+
+        function selectColor(colorKey, colorName) {
+            currentVariant = colorKey;
+            
+            // Update UI Active State on Color Buttons
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.color-btn[data-color="${colorKey}"]`).classList.add('active');
+
+            // Update Color Label
+            document.getElementById('selectedColorLabel').textContent = colorName;
+
+            // Switch Shoe Graphics
+            document.querySelectorAll('.shoe-svg-graphic').forEach(svg => {
+                svg.style.display = 'none';
+            });
+            document.getElementById(`shoe-${colorKey}`).style.display = 'block';
+
+            // Switch Descriptions
+            document.querySelectorAll('.description-content').forEach(desc => {
+                desc.classList.remove('active');
+            });
+            document.getElementById(`desc-${colorKey}`).classList.add('active');
+
+            // Update Special Indicator on Sizes if Pink
+            const size42 = document.getElementById('size-42');
+            const size43 = document.getElementById('size-43');
+            if (colorKey === 'pink') {
+                size42.classList.add('special-price-indicator');
+                size43.classList.add('special-price-indicator');
+            } else {
+                size42.classList.remove('special-price-indicator');
+                size43.classList.remove('special-price-indicator');
+            }
+
+            // Recalculate price
+            updatePrice();
+        }
+
+        function selectSize(size) {
+            selectedSize = size;
+
+            // Update UI Active State on Size Buttons
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.size-btn[data-size="${size}"]`).classList.add('active');
+
+            // Update Label
+            document.getElementById('selectedSizeLabel').textContent = `Size ${size} EUR`;
+            document.getElementById('selectedSizeLabel').style.color = '#ffffff';
+
+            // Recalculate price
+            updatePrice();
+        }
+
+        function checkout() {
+            if (!selectedSize) {
+                alert('Silakan pilih ukuran sepatu (EUR) terlebih dahulu sebelum melakukan pembelian.');
+                return;
+            }
+            const price = (currentVariant === 'pink' && (selectedSize === '42' || selectedSize === '43')) ? 'Rp 120.000' : 'Rp 185.000';
+            const colorName = document.getElementById('selectedColorLabel').textContent;
+            
+            alert(`Terima kasih! Pesanan Anda:
+
+Produk: PUMA Speedcat OG Premium
+Varian: ${colorName}
+Ukuran: ${selectedSize} EUR
+Total Harga: ${price}
+
+Pesanan sedang diproses!`);
+        }
+    </script>
+</body>
+</html>
