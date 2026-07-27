@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="in">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +5,7 @@
 </head>
 <body>
 </body>
-</html><!DOCTYPE html>
+</html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -38,8 +37,7 @@
     <header class="main-header">
         <div class="container header-inner">
             <div class="logo-area">
-                  <img src="logo.jpg" style="max-width: 29%; height: auto;">WELCOME TO</span></div>
-                <div class="logo-text">
+                  <img src="logo.jpg" style="max-width: 29%; height: auto;">WELCOME</div> TO<class="logo-text">
                     <span class="brand-name">REVSCOLL</span>
                     <span class="brand-tag">STORE OFFICIAL</span>
                 </div>
@@ -55,8 +53,6 @@
                 <a href="#pesan" class="btn btn-dark btn-3d-dark">
                     <i class="fa-solid fa-bag-shopping"></i> Pesan Sekarang
                 </a>
-            </div>
-        </div>
     </header>
 
     <!-- Hero Home Section -->
@@ -128,20 +124,14 @@
         
        
                 <!-- Produk 1 -->
-</i></div>
 <img src="master-puma.png" alt="Deskripsi Gambar" style="max-width: 100%; max-height: 150%;"> 
-                        <h3>Puma Speedcat</h3><a href="puma_speedcat_og.html" target="_blank" class="btn btn-light w-100"><i class="fa-solid fa-arrow-right">Dapatkan kesempatan miliki sepatu ini dengan Diskon Terbatas</i></a>
-                </div>
- </div>
-            </div>
-        </div>
+                        <h3>Puma Speedcat</h3><a href="puma_speedcat_og.html" target="_blank" class="btn btn-light w-100"><i class="fa-solid fa-arrow-right">Dapatkan kesempatan miliki sepatu ini dengan Diskon Terbatas</i></a>     
     </section>
 <p></p>
                 <!-- Produk 2 --><p></p>
   <h3>ADIZERO HIGH PREMIUM 1:1</h3>              
        <img src="adizero-banner.png" style="max-width: 100%; height: auto;">        
-                        <p></p><a href="adizero.html" target="_blank" class="btn btn-light w-100"><i class="fa-solid fa-arrow-right">Untukmu Yang terbiasa Lari Dari Kenyataan,Lari Lebih Kencang Dengan Adizero Evo Sl</i></a><i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+                        <p></p><a href="adizero.html" target="_blank" class="btn btn-light w-100"><i class="fa-solid fa-arrow-right">Untukmu Yang terbiasa Lari Dari Kenyataan,Lari Lebih Kencang Dengan Adizero Evo Sl</i></a><i class="fa-solid fa-arrow-right"></i>
 
                 <!-- Produk 3 -->
                 <div class="product-card card-3d">
@@ -151,31 +141,10 @@
                  <img src="banner1-knu.png" style="max-width: 100%; height: auto;">      <p></p>
                     </div>
               <a href="vans-knu.html" target="_blank" class="btn btn-light w-100"><i class= "fa-solid fa-arrow-right">Diskon 50% dan dapatkan gratis ongkirnya</i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-      </div>
-        </div>
-          </div>
-            </section>
+           
     <!-- Link HTML mengarah ke file lain dalam satu direktori dengan tombol berbeda -->
 <a href="produk.html" target="_blank" class="btn btn-light w-100"><i class="fa-solid fa-arrow-right">Cek Katalog Lengkap Kami Disini</i></a>
                
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
-   </div>
-     </div>
-       </div>
-         </div>
-           </div>
-             </div>
-               </section>
-   
-    </section>
     <!-- Form Pesanan Terintegrasi WhatsApp -->
     <section id="pesan" class="order-section">
         <div class="container">
