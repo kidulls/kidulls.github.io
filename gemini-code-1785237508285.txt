@@ -1,0 +1,11 @@
+my-revscoll-site/
+├── _config.yml
+├── _includes/
+│   ├── header.html
+│   ├── footer.html
+│   └── head.html
+├── _layouts/
+│   └── default.html
+├── css/
+│   └── style.css
+└── index.html
