@@ -1,11 +1,10 @@
-my-revscoll-site/
-├── _config.yml
-├── _includes/
-│   ├── header.html
-│   ├── footer.html
-│   └── head.html
-├── _layouts/
-│   └── default.html
-├── css/
-│   └── style.css
-└── index.html
+title: "Revscoll Store"
+email: "r3vscollection@gmail.com"
+description: "Grosir & Eceran Sepatu Terpercaya di Tangerang"
+baseurl: "https://revscoll.my.id"
+url: "https://revscoll.my.id"
+
+# Tema Jekyll 
+# theme: minima
+
+markdown: kramdown
