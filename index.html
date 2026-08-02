@@ -1,359 +1,478 @@
 <!DOCTYPE html>
-<html lang="in">
-<head>
-    <meta charset="UTF-8">
-    <title>REVSCOLL STORE</title>
-</head>
-<body>
-</body>
-</html><!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="scroll-smooth" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grosir & Eceran Sepatu Terpercaya</title>
-    <!-- Font Awesome Professional / Icons -->
+    <title>Revscoll Store - Distributor Grosir & Eceran Sepatu Terpercaya</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Custom CSS Terpisah -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS Eksternal -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* CSS Variabel untuk Tema Terang & Gelap */
+        :root {
+            --primary-font: 'Plus Jakarta Sans', sans-serif;
+            --elite-font: 'Playfair Display', serif;
+            --bg-color: #0f1016;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --header-bg: rgba(15, 16, 22, 0.9);
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8f9fa;
+            --text-color: #121212;
+            --card-bg: #ffffff;
+            --header-bg: rgba(248, 249, 250, 0.9);
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: var(--primary-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .elite-font {
+            font-family: var(--elite-font);
+        }
+
+        /* Efek Berkilauan Emas (Gold Shimmer) Setiap 1 Detik */
+        @keyframes goldShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes wobbleEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        .gold-glow-text {
+            background: linear-gradient(90deg, #cfac55 0%, #fff1b0 25%, #d4af37 50%, #fff1b0 75%, #cfac55 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShimmer 1s linear infinite, wobbleEffect 3s ease-in-out infinite;
+        }
+
+        .gold-glow-btn {
+            background: linear-gradient(90deg, #b8860b, #ffd700, #daa520, #ffd700, #b8860b) !important;
+            background-size: 200% auto !important;
+            color: #121212 !important;
+            animation: goldShimmer 1s linear infinite !important;
+            font-weight: 800 !important;
+            border: none !important;
+        }
+
+        /* Penyesuaian Media Container */
+        .media-container {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .media-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .media-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Header Styling & Actions */
+        .main-header {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Perbaikan Tombol Tema & Hamburger agar Jelas Terlihat */
+        .theme-toggle-btn, .hamburger-btn {
+            background: #d4af37;
+            border: 1px solid #ffd700;
+            color: #121212;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover, .hamburger-btn:hover {
+            background: #ffd700;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--bg-color);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: color 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            color: #d4af37;
+        }
+
+        /* Card & Section Adaptif */
+        section {
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .about-grid, .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .about-card, .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .about-card:hover, .product-card:hover {
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .product-meta {
+            margin-top: 15px;
+        }
+
+        .catalog-cta-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Footer */
+        .dynamic-footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 35px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .lightbox-close:hover {
+            color: #d4af37;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Top Bar Informasi Cepat -->
-    <div class="top-bar">
-        <div class="container top-bar-inner">
-            <div class="top-bar-left">
-                <span><i class="fa-solid fa-store text-red"></i> Grosir & Eceran Sepatu Terpercaya</span>
-                <span class="divider">|</span>
-                <span class="location"><i class="fa-solid fa-location-dot text-red"></i> Pasar Kotabumi, Tangerang</span>
-            </div>
-            <div class="top-bar-right">
-                <a href="https://wa.me/628987686501" target="_blank"><i class="fa-brands fa-whatsapp text-green"></i> 0898-7686-501</a>
-            </div>
-        </div>
-    </div>
-    <!-- Header & Navbar Profesional -->
-    <header class="main-header">
-        <div class="container header-inner">
-            <div class="logo-area">
-                  <img src="logo.jpg" style="max-width: 29%; height: auto;">WELCOME TO</span></div>
-                <div class="logo-text">
-                    <span class="brand-name">REVSCOLL</span>
-                    <span class="brand-tag">STORE OFFICIAL</span>
+    <!-- Header Section Terkonfigurasi & Aman di Mobile -->
+    <header class="main-header" id="home">
+        <div class="container header-container">
+            <!-- Logo & Judul Header -->
+            <div class="brand-wrapper">
+                <img src="assets/images/logo-hitam.png" alt="Logo Revscoll Store" class="brand-logo">
+                <div class="brand-text">
+                    <h1 class="brand-title elite-font gold-glow-text" style="font-size: 20px; margin: 0;">REVSCOLL STORE</h1>
+                    <p class="brand-subtitle gold-glow-text" style="font-size: 11px; margin: 0;">Distributor Sepatu Grosir & Eceran Terpercaya</p>
                 </div>
             </div>
-            <nav class="main-nav">
-                <a href="#home">Beranda</a>
-                <a href="#tentang">Tentang Kami</a>
-                <a href="#produk">Produk & Layanan</a>
-                <a href="#pesan">Form Pesanan</a>
-                <a href="#kontak">Kontak</a>
-            </nav>
-            <div class="header-action">
-                <a href="#pesan" class="btn btn-dark btn-3d-dark">
-                    <i class="fa-solid fa-bag-shopping"></i> Pesan Sekarang
-                </a>
+
+            <!-- Tombol Aksi Kanan (Tema & Hamburger) -->
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Ganti Tema" title="Ganti Mode Terang/Gelap">🌓</button>
+                <button class="hamburger-btn" onclick="toggleMenu()" aria-label="Menu Toggle" title="Menu Navigasi">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile/Desktop Toggle -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="https://revscoll.my.id" onclick="toggleMenu()"><i class="fa-solid fa-house"></i> Beranda</a>
+            <a href="#tentang" onclick="toggleMenu()"><i class="fa-solid fa-store"></i> Tentang Kami</a>
+            <a href="#produk" onclick="toggleMenu()"><i class="fa-solid fa-box-open"></i> Katalog Produk</a>
+            <a href="#kontak" onclick="toggleMenu()"><i class="fa-solid fa-address-book"></i> Kontak Kami</a>
         </div>
     </header>
 
-    <!-- Hero Home Section -->
-    <section id="home" class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <div class="hero-badge">
-                <i class="fa-solid fa-shield-halved"></i> Garansi Kualitas Tangan Pertama
-            </div>
-            <h1>Grosir & Eceran Sepatu <br><span class="text-gradient">Terpercaya & Berkualitas</span></h1>
-            <p>Pusat belanja alas kaki terlengkap untuk gaya harian hingga koleksi trendi masa kini. Melayani partai besar (grosir) maupun eceran ke seluruh Indonesia.</p>
-            <div class="hero-buttons">
-                <a href="#produk" class="btn btn-primary btn-3d">Jelajahi Koleksi Produk</a>
-                <a href="#pesan" class="btn btn-outline">Form Pemesanan Cepat</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tentang Kami Section -->
-    <section id="tentang" class="about-section">
-        <div class="container about-grid">
-            <div class="about-text">
-                <span class="section-subtitle">Mengenal Lebih Dekat</span>
-                <h2>Solusi Terbaik Kebutuhan Alas Kaki Anda</h2>
-                <p class="highlight-p"><strong>Revscoll Store</strong> hadir sebagai mitra terpercaya bagi Anda yang mencari sepatu berkualitas tinggi, baik untuk penggunaan pribadi (eceran) maupun untuk kebutuhan bisnis kembali (grosir).</p>
-                <p>Kami mengutamakan kualitas produk terbaik, pilihan model yang selalu update, serta pelayanan ramah dan transparan bagi seluruh pelanggan setia.</p>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Terpercaya & Amanah</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">Grosir & Ecer</span>
-                        <span class="stat-label">Harga Kompetitif</span>
-                    </div>
-                </div>
-            </div>
-            <div class="about-card card-3d">
-                <div class="card-badge">Official Store</div>
-                <h3><i class="fa-solid fa-map-location-dot text-red"></i> Lokasi & Kontak Toko</h3>
-                <ul class="contact-list">
-                    <li>
-                        <i class="fa-solid fa-building text-red"></i>
-                        <span>Pasar Kotabumi Jln Raya Kotabumi Regency Blok AC/9 No.21, Kotabumi, Pasar Kemis, Kab. Tangerang - Banten 15560</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-envelope text-red"></i>
-                        <span>r3vscollection@gmail.com</span>
-                    </li>
-                    <li>
-                        <i class="fa-brands fa-whatsapp text-green"></i>
-                        <span>0898-7686-501 (WhatsApp Admin)</span>
-                    </li>
-                </ul>
-                <a href="https://wa.me/628987686501" target="_blank" class="btn btn-dark btn-3d w-100 text-center">Hubungi Admin Sekarang</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Produk & Layanan Section -->
-    <section id="produk" class="products-section">
+    <!-- Section Kreatif: Tentang Toko, Visi, & Misi -->
+    <section id="tentang">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Katalog Unggulan</span>
-                <h2>Produk & Varian Tersedia</h2>
-                <p>Pilih lini produk favorit Anda. Setiap produk tersedia dalam berbagai pilihan warna dan ukuran menarik.</p>
+                <span class="section-subtitle gold-glow-text">Mengenal Lebih Dekat</span>
+                <h2 class="elite-font gold-glow-text">Pusat Grosir & Eceran Sepatu Terbaik</h2>
+                <p class="gold-glow-text">Revscoll Store hadir memberikan solusi alas kaki berkualitas tinggi untuk gaya hidup harian maupun kebutuhan bisnis Anda.</p>
             </div>
-</div>
-        
-       
+            <div class="about-grid">
+                <!-- Deskripsi Toko -->
+                <div class="about-card">
+                    <div class="about-icon" style="color: #d4af37; font-size: 24px; margin-bottom: 10px;"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="elite-font gold-glow-text">Komitmen Kualitas</h3>
+                    <p class="gold-glow-text">Menyediakan model sepatu pilihan mulai dari kategori sporty, casual, hingga high premium 1:1 yang dikurasi langsung untuk menjamin kepuasan pelanggan.</p>
+                </div>
+                <!-- Visi Toko -->
+                <div class="about-card">
+                    <div class="about-icon" style="color: #d4af37; font-size: 24px; margin-bottom: 10px;"><i class="fa-solid fa-eye"></i></div>
+                    <h3 class="elite-font gold-glow-text">Visi Kami</h3>
+                    <p class="gold-glow-text">Menjadi distributor grosir dan eceran sepatu nomor satu di Indonesia yang dikenal karena keandalan, kelengkapan, serta pelayanannya.</p>
+                </div>
+                <!-- Misi Toko -->
+                <div class="about-card">
+                    <div class="about-icon" style="color: #d4af37; font-size: 24px; margin-bottom: 10px;"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3 class="elite-font gold-glow-text">Misi Kami</h3>
+                    <p class="gold-glow-text">Menghadirkan produk tren terkini harga bersaing, memperluas jangkauan distribusi, serta membangun hubungan mitra bisnis jangka panjang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3 Produk Unggulan -->
+    <section id="produk">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle gold-glow-text">Katalog Eksklusif</span>
+                <h2 class="elite-font gold-glow-text">3 Produk Pilihan Utama</h2>
+                <p class="gold-glow-text">Pilih lini produk favorit Anda dengan kualitas terbaik untuk penggunaan pribadi maupun grosir.</p>
+            </div>
+            <div class="products-grid">
                 <!-- Produk 1 -->
-</i></div>
-<img src="master-puma.png" alt="Deskripsi Gambar" style="max-width: 100%; max-height: 150%;"> 
-                        <h3>Puma Speedcat</h3><a href="puma_speedcat_og.html" target="_blank" class="btn btn-light w-100"><i class="fa-solid fa-arrow-right">Dapatkan kesempatan miliki sepatu ini dengan Diskon Terbatas</i></a>
+                <div class="product-card">
+                    <div class="media-container" onclick="openLightbox('assets/images/speedcat/master-puma.png')">
+                        <img src="assets/images/speedcat/master-puma.png" alt="Puma Speedcat" loading="lazy">
+                    </div>
+                    <div class="product-meta">
+                        <h3 class="product-title elite-font gold-glow-text">Puma Speedcat</h3>
+                        <p class="product-desc gold-glow-text">Desain sporty klasik elegan, cocok untuk gaya kasual sehari-hari dengan material premium pilihan.</p>
+                        <a href="speedcat.html" target="_blank" class="btn-gold-custom gold-glow-btn" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px; border-radius:8px; text-decoration:none; margin-top:10px; width:100%;">
+                            <i class="fa-solid fa-arrow-right"></i> Lihat Detail Produk
+                        </a>
+                    </div>
                 </div>
- </div>
-            </div>
-        </div>
-    </section>
-<p></p>
-                <!-- Produk 2 --><p></p>
-  <h3>ADIZERO HIGH PREMIUM 1:1</h3>              
-       <img src="adizero-banner.png" style="max-width: 100%; height: auto;">        
-                        <p></p><a href="adizero.html" target="_blank" class="btn btn-light w-100"><i class="fa-solid fa-arrow-right">Untukmu Yang terbiasa Lari Dari Kenyataan,Lari Lebih Kencang Dengan Adizero Evo Sl</i></a><i class="fa-solid fa-arrow-right"></i></a>
+                <!-- Produk 2 -->
+                <div class="product-card">
+                    <div class="media-container" onclick="openLightbox('assets/images/adizero/adizero-banner.png')">
+                        <img src="assets/images/adizero/adizero-banner.png" alt="Adizero High Premium" loading="lazy">
+                    </div>
+                    <div class="product-meta">
+                        <h3 class="product-title elite-font gold-glow-text">Adizero High Premium 1:1</h3>
+                        <p class="product-desc gold-glow-text">Lari lebih kencang dan ringan dengan performa maksimal untuk pengalaman terbaik Anda.</p>
+                        <a href="adizero.html" target="_blank" class="btn-gold-custom gold-glow-btn" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px; border-radius:8px; text-decoration:none; margin-top:10px; width:100%;">
+                            <i class="fa-solid fa-arrow-right"></i> Lihat Detail Produk
+                        </a>
+                    </div>
                 </div>
-
                 <!-- Produk 3 -->
-                <div class="product-card card-3d">
-                    <div class="card-content">
-                        <div class="product-icon"><i class="fa-solid fa-fire"></i></div>
-                        <h3>Vans Knu Skool</h3>
-                 <img src="banner1-knu.png" style="max-width: 100%; height: auto;">      <p></p>
+                <div class="product-card">
+                    <div class="media-container" onclick="openLightbox('assets/images/knu/banner1-knu.png')">
+                        <img src="assets/images/knu/banner1-knu.png" alt="Vans Knu Skool" loading="lazy">
                     </div>
-              <a href="vans-knu.html" target="_blank" class="btn btn-light w-100"><i class= "fa-solid fa-arrow-right">Diskon 50% dan dapatkan gratis ongkirnya</i></a>
+                    <div class="product-meta">
+                        <h3 class="product-title elite-font gold-glow-text">Vans Knu Skool</h3>
+                        <p class="product-desc gold-glow-text">Sepatu gaya retro-skater lidah tebal ikonik, memberikan kenyamanan ekstra & tampilan trendy.</p>
+                        <a href="vans-knu.html" target="_blank" class="btn-gold-custom gold-glow-btn" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px; border-radius:8px; text-decoration:none; margin-top:10px; width:100%;">
+                            <i class="fa-solid fa-arrow-right"></i> Lihat Detail Produk
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-      </div>
-        </div>
-          </div>
-            </section>
-    <!-- Link HTML mengarah ke file lain dalam satu direktori dengan tombol berbeda -->
-<a href="produk.html" target="_blank" class="btn btn-light w-100"><i class="fa-solid fa-arrow-right">Cek Katalog Lengkap Kami Disini</i></a>
-               
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
-   </div>
-     </div>
-       </div>
-         </div>
-           </div>
-             </div>
-               </section>
-   
-    </section>
-    <!-- Form Pesanan Terintegrasi WhatsApp -->
-    <section id="pesan" class="order-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Pemesanan Mudah</span>
-                <h2>Formulir Order Online</h2>
-                <p>Lengkapi data pesanan di bawah ini. Anda akan langsung diarahkan ke WhatsApp Admin untuk konfirmasi instan.</p>
-            </div>
-            
-            <div class="form-container">
-                <form id="orderForm" onsubmit="sendToWhatsApp(event)" class="card-3d form-3d">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Nama Lengkap</label>
-                            <input type="text" id="name" required placeholder="Masukkan nama Anda">
-                        </div>
-                        <div class="form-group">
-                            <label>Nomor WhatsApp / Telepon</label>
-                            <input type="tel" id="phone" required placeholder="Contoh: 08123456789">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Pilih Produk</label>
-                            <select id="product" required>
-                                <option value="">-- Pilih Katalog Produk --</option>
-                                <option value="Puma Speedcat">Puma Speedcat</option>
-                                <option value="Adidas Adizero Evo SL">Adidas Adizero Evo SL</option>
-                                <option value="Vans Knu Skool">Vans Knu Skool</option>
-                                <option value="Adidas Campus">Adidas Campus</option>
-                                <option value="Ando All Size Age">Ando All Size Age</option>
-                                <option value="Puma Suede XL">Puma Suede XL</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Jumlah Pesanan & Ukuran</label>
-                            <input type="text" id="quantity" required placeholder="Contoh: 2 Pasang (Size 42)">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Alamat Pengiriman Lengkap</label>
-                        <textarea id="address" rows="3" required placeholder="Nama Jalan, No. Rumah, RT/RW, Kecamatan, Kota, Provinsi, Kode Pos"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-3d btn-large w-100">
-                        <i class="fa-brands fa-whatsapp text-lg"></i> Kirim Pesanan ke WhatsApp Admin
-                    </button>
-                </form>
+            <!-- Tombol Cek Katalog Lengkap -->
+            <div class="catalog-cta-container">
+                <a href="produk.html" target="_blank" class="btn-gold-custom gold-glow-btn" style="display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:14px 28px; border-radius:8px; text-decoration:none;">
+                    <i class="fa-solid fa-store"></i> Cek Katalog Lengkap Kami Disini
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer Profesional -->
-    <footer id="kontak" class="main-footer">
+    <!-- Footer Selaras & Rapi -->
+    <footer id="kontak" class="dynamic-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col brand-col">
-                    <div class="footer-logo">
-                        <div class="logo-berputar.png"><img src="logo.jpg" style="max-width: 59%; height: auto;" </div>
-                        <span class="brand-name">Revscoll Store</span>
-                    </div>
-                    <p>Pusat grosir dan eceran sepatu terpercaya dengan koleksi model terlengkap dan harga terbaik di Tangerang.</p>
-                    <div class="social-links">
-                        <a href="https://facebook.com/revscoll"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://instagram.com/revscoll"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://wa.me/628987686501"><i class="fa-brands fa-whatsapp"></i></a>
-                    </div>
+                <div class="footer-col">
+                    <h3 class="elite-font gold-glow-text">REVSCOLL STORE</h3>
+                    <p class="gold-glow-text">Pusat distributor sepatu grosir dan eceran terpercaya dengan model terlengkap dan harga bersaing di wilayah Tangerang dan sekitarnya.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Navigasi Utama</h4>
-                    <ul>
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="tentang-kami.html">Tentang Kami</a></li>
-                        <li><a href="#produk">Produk & Layanan</a></li>
-                        <li><a href="#pesan">Form Pesanan</a></li>
+                    <h4 class="elite-font gold-glow-text">Navigasi Cepat</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#home" class="gold-glow-text" style="text-decoration: none;">Beranda Utama</a></li>
+                        <li><a href="#tentang" class="gold-glow-text" style="text-decoration: none;">Tentang Kami</a></li>
+                        <li><a href="#produk" class="gold-glow-text" style="text-decoration: none;">Katalog Produk</a></li>
+                        <li><a href="produk.html" target="_blank" class="gold-glow-text" style="text-decoration: none;">Semua Koleksi</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Informasi Kontak</h4>
-                    <ul class="contact-info">
-                        <li><i class="fa-brands fa-whatsapp text-red"></i> <a href="https://wa.me/628987686501">0898-7686-501</a></li>
-                        <li><i class="fa-solid fa-envelope text-red"></i> r3vscollection@gmail.com</li>
-                        <li><i class="fa-solid fa-location-dot text-red"></i> Pasar Kotabumi Jln Raya Kotabumi Regency Blok AC/9 No.21, Tangerang</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Kebijakan & Privasi</h4>
-                    <ul>
-                        <li><a href="#">Kebijakan dan Privasi</a></li>
-                        <li><a href="#">Syarat & Ketentuan</a></li>
-                        <li><a href="#">Kebijakan Pengiriman</a></li>
-                    </ul>
+                    <h4 class="elite-font gold-glow-text">Kontak Kami</h4>
+                    <p class="gold-glow-text"><i class="fa-solid fa-location-dot" style="color: #d4af37;"></i> Pasar Kotabumi Jln Raya Kotabumi Regency Blok AC/9 No.21, Tangerang</p>
+                    <p class="gold-glow-text"><i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/628987686501" target="_blank" style="color:inherit; text-decoration: none;">0898-7686-501</a></p>
+                    <p class="gold-glow-text"><i class="fa-solid fa-envelope" style="color: #d4af37;"></i> r3vscollection@gmail.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Revscoll Store. Hak Cipta Dilindungi Undang-Undang.</p>
-                <p>Grosir & Eceran Sepatu Terpercaya</p>
+                <p class="gold-glow-text">&copy; 2026 Revscoll Store. All Rights Reserved. Dibangun secara Dinamis & Profesional.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Script JavaScript WhatsApp Form -->
+    <!-- Lightbox Modal Interaktif -->
+    <div class="lightbox" id="productLightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightboxImg" src="" alt="Zoom Preview">
+    </div>
+
+    <!-- Script Fungsionalitas Website -->
     <script>
-        function sendToWhatsApp(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const product = document.getElementById('product').value;
-            const quantity = document.getElementById('quantity').value;
-            const address = document.getElementById('address').value;
-            const adminPhone = "628987686501";
-            
-            const message = `Halo Admin Revscoll Store,\n\nSaya ingin memesan produk berikut:\n` +
-                            `- Nama: ${name}\n` +
-                            `- No. Telepon: ${phone}\n` +
-                            `- Produk: ${product}\n` +
-                            `- Jumlah & Ukuran: ${quantity}\n` +
-                            `- Alamat Pengiriman: ${address}\n\n` +
-                            `Mohon ketersediaan stok dan total pembayarannya. Terima kasih!`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${adminPhone}?text=${encodedMessage}`;
-            window.open(whatsappURL, '_blank');
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                html.setAttribute('data-theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
+        }
+
+        function openLightbox(imgSrc) {
+            const lightbox = document.getElementById('productLightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('productLightbox');
+            lightbox.classList.remove('active');
         }
     </script>
- <!-- Elite Floating Background Music Player -->
-<div class="elite-music-player" id="eliteMusicPlayer">
-    <div class="music-disc" id="musicDisc">
-        <i class="fa-solid fa-compact-disc text-red" style="font-size: 14px; opacity: 0;"></i>
-    </div>
-    <div class="music-info">
-        <span class="music-title">Revscoll Elite Vibe</span>
-        <span class="music-status" id="musicStatus">Ketuk untuk Putar</span>
-    </div>
-    <button class="music-toggle-btn" id="musicToggleBtn" onclick="toggleBackgroundMusic()" title="Putar/Jeda Musik">
-        <i class="fa-solid fa-play" id="musicIcon"></i>
-    </button>
-</div>
-
-<!-- Audio Element (Ganti URL dengan file musik pilihan Anda, misal file MP3 instrumen santai / lofi e-commerce) -->
-<audio id="bgAudio" loop>
-    <source src="jinggle.mp3" type="audio/mpeg">
-    Browser Anda tidak mendukung elemen audio.
-</audio>
-
-<!-- Script Kontrol Musik -->
-<script>
-    const bgAudio = document.getElementById('bgAudio');
-    const musicDisc = document.getElementById('musicDisc');
-    const musicStatus = document.getElementById('musicStatus');
-    const musicIcon = document.getElementById('musicIcon');
-    let isPlaying = false;
-
-    function toggleBackgroundMusic() {
-        if (isPlaying) {
-            bgAudio.pause();
-            musicDisc.classList.remove('playing');
-            musicStatus.textContent = 'Musik Dijeda';
-            musicIcon.className = 'fa-solid fa-play';
-            isPlaying = false;
-        } else {
-            bgAudio.play().then(() => {
-                musicDisc.classList.add('playing');
-                musicStatus.textContent = 'Memutar Musik';
-                musicIcon.className = 'fa-solid fa-pause';
-                isPlaying = true;
-            }).catch(e => {
-                console.log("Autoplay dicegah oleh browser, interaksi pengguna diperlukan.");
-            });
-        }
-    }
-
-    // Auto play attempt on first user interaction anywhere on the page
-    document.addEventListener('click', function initAudio() {
-        if (!isPlaying) {
-            bgAudio.volume = 0.3; // Volume latar yang nyaman (30%)
-            // Opsional: jika ingin otomatis menyala saat klik pertama
-        }
-    }, { once: true });
-</script>   
 </body>
 </html>
