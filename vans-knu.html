@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVSCOLL STORE - Vans Knu Oskoll Premium</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VIDEO SECTION --- */
+.video-wrapper {
+    margin: 25px 0;
+}
+.video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--header-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}        
+        /* --- CSS VARIABLES & THEME SETUP --- */
+        :root {
+            --primary-font: 'Plus Jakarta Sans', sans-serif;
+            --elite-font: 'Playfair Display', serif;
+            --bg-color: #0f1016;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --header-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-color: #d4af37;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f4f4f9;
+            --text-color: #121212;
+            --card-bg: rgba(0, 0, 0, 0.03);
+            --header-bg: rgba(0, 0, 0, 0.05);
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--primary-font);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .elite-font {
+            font-family: var(--elite-font);
+        }
+
+        /* --- ANIMATIONS & EFFECTS --- */
+        @keyframes goldShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes wobbleEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        .gold-glow-text {
+            background: linear-gradient(90deg, #cfac55 0%, #fff1b0 25%, #d4af37 50%, #fff1b0 75%, #cfac55 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShimmer 1s linear infinite, wobbleEffect 3s ease-in-out infinite;
+        }
+
+        .gold-glow-btn {
+            background: linear-gradient(90deg, #b8860b, #ffd700, #daa520, #ffd700, #b8860b);
+            background-size: 200% auto;
+            color: #121212 !important;
+            animation: goldShimmer 1s linear infinite;
+            font-weight: 800;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle-btn, .hamburger-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle-btn:hover, .hamburger-btn:hover {
+            background: #d4af37;
+            color: #121212;
+        }
+
+        /* Mobile Menu Drawer */
+        .nav-drawer {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--header-bg);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .nav-drawer a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: color 0.2s;
+        }
+
+        .nav-drawer a:hover {
+            color: #d4af37;
+        }
+
+        /* --- CONTAINER & PRODUCT CARD --- */
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Visual & Banner */
+        .product-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--header-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .badge-discount {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #d4af37;
+            color: #121212;
+            padding: 5px 12px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            border-radius: 20px;
+        }
+
+        .product-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.4s ease;
+        }
+
+        .product-visual img:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- GALLERY SCROLL --- */
+        .gallery-wrapper {
+            margin: 20px 0;
+        }
+
+        .gallery-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            gap: 12px;
+            padding-bottom: 8px;
+            scroll-behavior: smooth;
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-scroll::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.4);
+            border-radius: 4px;
+        }
+
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--header-bg);
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- LIGHTBOX MODAL --- */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 35px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- PRODUCT META & DETAILS --- */
+        .product-meta {
+            margin: 20px 0;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .price-tag {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 1rem;
+        }
+
+        .final-price {
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .promo-banner {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* --- FORM CONTROLS --- */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--header-bg);
+            color: var(--text-color);
+            font-family: var(--primary-font);
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #d4af37;
+            outline: none;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Variant Buttons Grid */
+        .variant-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .variant-btn {
+            background: var(--header-bg);
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            color: var(--text-color);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .variant-btn img {
+            width: 100%;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 4px;
+            border-radius: 4px;
+        }
+
+        .variant-btn:hover {
+            border-color: #d4af37;
+        }
+
+        .variant-btn.active {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        /* Size Options Grid */
+        .size-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .size-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-color);
+            background: var(--header-bg);
+            color: var(--text-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .size-btn:hover {
+            border-color: #d4af37;
+        }
+
+        .size-btn.active {
+            background: #d4af37;
+            color: #121212;
+            border-color: #d4af37;
+        }
+
+        .btn-gold-custom {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 15px;
+            transition: transform 0.2s, filter 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-gold-custom:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        /* --- STORE FEATURES --- */
+        .store-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px 10px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .feature-card h4 {
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .feature-card p {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+            .store-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Nav Compact -->
+    <header class="site-header">
+        <div class="header-left">
+            <div class="brand-logo elite-font gold-glow-text">
+                REVSCOLL<span>STORE</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <!-- Tombol Toggle Terang/Gelap -->
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="Ganti Tema">🌓</button>
+            <!-- Tombol Hamburger Menu -->
+            <button class="hamburger-btn" onclick="toggleMenu()" title="Menu">☰</button>
+        </div>
+    </header>
+
+    <!-- Menu Drawer Dinamis -->
+    <nav class="nav-drawer" id="navDrawer">
+        <a href="index.html" onclick="toggleMenu()">Beranda</a>
+        <a href="produk.html" onclick="toggleMenu()">Galeri Produk</a>
+        <a href="#orderForm" onclick="toggleMenu()">Form Pemesanan</a>
+        <a href="tentang-kami.html" onclick="toggleMenu()">Tentang Kami</a>
+    </nav>
+
+    <div class="container">
+        <!-- Main Product Card -->
+        <main class="product-card" id="cardProduct">
+            
+            <!-- Visual Foto & Banner Diskon -->
+            <div class="product-visual">
+                <span class="badge-discount elite-font">DISKON 50%</span>
+                <img id="mainProductImg" src="assets/images/knu/banner1-knu.png" alt="Vans Knu Oskoll">
+                
+            </div>
+<!-- Section Video Produk -->
+<div class="video-wrapper">
+    <div class="gallery-title">
+        <span class="elite-font gold-glow-text">🎥 Video Detail Produk</span>
+    </div>
+    <div class="video-container">
+        <video controls autoplay muted loop playsinline>
+            <source src="assets/video/knu.mp4" type="video/mp4">
+            Browser Anda tidak Mendukung Pemutaran Video.
+        </video>
+    </div>
+</div>
+            <!-- Galeri Foto Horizontal -->
+            <div class="gallery-wrapper">
+                <div class="gallery-title">
+                    <span class="elite-font gold-glow-text">Pilih Varian / Galeri Foto</span>
+                    <span style="font-size: 10px; opacity: 0.7;" class="gold-glow-text">Geser & Klik →</span>
+                </div>
+                <div class="gallery-scroll" id="photoGallery">
+    <!-- Varian 1 -->
+    <div class="gallery-item" onclick="changeMainImage('assets/images/knu/banner-knu1.png'); openLightbox('assets/images/knu/knu01.jpg')">
+        <img src="assets/images/knu/knu01.jpg" alt="Vans Knu 1">
+    </div>
+    <!-- Varian 2 -->
+    <div class="gallery-item" onclick="changeMainImage('assets/images/knu/knu02.jpg'); openLightbox('assets/images/knu/knu02.jpg')">
+        <img src="assets/images/knu/knu02.jpg" alt="Vans Knu 2">
+    </div>
+    <!-- Varian 3 -->
+    <div class="gallery-item" onclick="changeMainImage('assets/images/knu/sole-putih.png'); openLightbox('assets/images/knu/sole-putih.png')">
+        <img src="assets/images/knu/sole-putih.png" alt="Sole Putih">
+    </div>
+
+    <!-- Varian 4 -->
+    <div class="gallery-item" onclick="changeMainImage('assets/images/knu/knu-fullblack.png'); openLightbox('assets/images/knu/knu-fullblack.png')">
+        <img src="assets/images/knu/knu-fullblack.png" alt="Full Black">
+    </div>
+</div>                   
+                </div>
+            </div>
+            <!-- Detail Produk -->
+            <div class="product-meta">
+                <div class="product-title elite-font gold-glow-text">Vans Knu Skoll Gaya Tak Kenal Masa</div>
+                
+                <div class="price-tag">
+                    <span class="original-price">Rp 358.000</span>
+                    <span class="price gold-glow-text" id="displayPrice">Rp 150.000</span>
+                </div>
+
+                <div class="promo-banner gold-glow-text">
+                    🔥 Promo Spesial Bulan Ini! Kualitas Premium dengan potongan harga khusus hari ini dari Revscoll Store. Free Ongkir ke seluruh Indonesia!
+                </div>
+
+                <div class="product-desc gold-glow-text">
+                    <strong>Deskripsi Produk:</strong><br>
+                    🔥 PROMO SPESIAL BULAN INI! DISKON 50% (Potongan harga langsung, jangan sampai kehabisan!).<br>
+                    📦 Pengiriman aman dari Tangerang dengan packing rapi. Melayani Transfer Bank & COD (Bayar di Tempat).
+                </div>
+            </div>
+
+            <!-- Form Pemesanan -->
+            <div class="order-form-container" id="orderForm">
+                <div class="elite-font gold-glow-text" style="margin-bottom: 15px; font-size: 16px;">
+                    <span>📝 Form Pemesanan Produk</span>
+                </div>
+                <form onsubmit="sendToWhatsApp(event)">
+                    
+                    <!-- Pilihan Warna Varian -->
+                    <div class="form-group">
+                        <label class="form-label elite-font gold-glow-text">Pilih Warna Varian:</label>
+                        <div class="variant-options">
+                            <button type="button" class="variant-btn active" onclick="selectVariant(this, 'Hitam Putih', 'knu1.jpeg')">
+                                <img src="assets/images/knu/knu1.jpeg" alt="Hitam Putih"> Hitam Putih
+                            </button>
+                            <button type="button" class="variant-btn" onclick="selectVariant(this, 'Hitam Sole putih', 'sole-putih.png')">
+                                <img src="assets/images/knu/sole-putih.png" alt="Sole Putih"> Sole Putih
+                            </button>
+                            <button type="button" class="variant-btn" onclick="selectVariant(this, 'Tripple Black', 'knu-fullblack.png')">
+                                <img src="assets/images/knu/knu-fullblack.png" alt="Full Black"> Full Black
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pilihan Ukuran -->
+                    <div class="form-group">
+                        <label class="form-label elite-font gold-glow-text">Pilih Ukuran (EUR):</label>
+                        <div class="size-options">
+                            <button type="button" class="size-btn" onclick="selectSize(this, '36')">36</button>
+                            <button type="button" class="size-btn" onclick="selectSize(this, '37')">37</button>
+                            <button type="button" class="size-btn" onclick="selectSize(this, '38')">38</button>
+                            <button type="button" class="size-btn" onclick="selectSize(this, '39')">39</button>
+                            <button type="button" class="size-btn" onclick="selectSize(this, '40')">40</button>
+                            <button type="button" class="size-btn" onclick="selectSize(this, '41')">41</button>
+                            <button type="button" class="size-btn" onclick="selectSize(this, '42')">42</button>
+                            <button type="button" class="size-btn" onclick="selectSize(this, '43')">43</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label elite-font gold-glow-text" for="custName">Nama Lengkap</label>
+                        <input type="text" id="custName" class="form-input" placeholder="Masukkan nama lengkap Anda" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label elite-font gold-glow-text" for="custPhone">Nomor HP / WhatsApp</label>
+                        <input type="tel" id="custPhone" class="form-input" placeholder="Contoh: 081234567890" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label elite-font gold-glow-text" for="custAddress">Alamat Lengkap</label>
+                        <textarea id="custAddress" class="form-textarea" placeholder="Jalan, RT/RW, Kecamatan, Kota, Kode Pos (Patokan Rumah)" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-gold-custom gold-glow-btn elite-font">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                        Pesan Sekarang Via WhatsApp
+                    </button>
+                </form>
+            </div>
+
+        </main>
+
+        <!-- Keunggulan Toko -->
+        <div class="store-features">
+            <div class="feature-card">
+                <h4 class="gold-glow-text">Kualitas Premium</h4>
+                <p>Bahan pilihan & nyaman.</p>
+            </div>
+            <div class="feature-card">
+                <h4 class="gold-glow-text">Pengiriman Cepat</h4>
+                <p>Diproses langsung.</p>
+            </div>
+            <div class="feature-card">
+                <h4 class="gold-glow-text">Garansi Revscoll</h4>
+                <p>Bantuan ramah WA.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lightbox -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        const originalPrice = 358000;
+        const finalPrice = originalPrice * 0.50;
+
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+        }
+        document.getElementById('displayPrice').innerText = formatRupiah(finalPrice);
+
+        let selectedVariant = "Hitam Putih";
+        let selectedSize = "";
+
+        function toggleMenu() {
+            const drawer = document.getElementById('navDrawer');
+            drawer.style.display = drawer.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
+        }
+
+        function changeMainImage(src) {
+            document.getElementById('mainProductImg').src = src;
+        }
+
+        function openLightbox(imageSrc) {
+            const modal = document.getElementById('lightboxModal');
+            const modalImg = document.getElementById('lightboxImg');
+            modal.style.display = 'flex';
+            modalImg.src = imageSrc;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').style.display = 'none';
+        }
+
+        function selectVariant(element, variantName, imgSrc) {
+            document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            selectedVariant = variantName;
+            changeMainImage(imgSrc);
+        }
+
+        function selectSize(element, sizeNumber) {
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            selectedSize = sizeNumber;
+        }
+
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            if (!selectedSize) {
+                alert("Harap pilih ukuran (size) sepatu terlebih dahulu!");
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const waNumber = "628987686501";
+
+            const message = `Halo Revscoll Store, saya ingin memesan sepatu berikut:%0A%0A*Detail Pesanan:*%0A• Produk: Vans Knu Oskoll%0A• Varian Warna: ${selectedVariant}%0A• Ukuran: ${selectedSize}%0A• Harga (Diskon 50%): ${formatRupiah(finalPrice)}%0A%0A*Data Pembeli:*%0A• Nama: ${name}%0A• No. HP: ${phone}%0A• Alamat Lengkap: ${address}%0A%0AMohon diproses pesanan saya. Terima kasih!`;
+
+            window.open(`https://wa.me/${waNumber}?text=${message}`, '_blank');
+        }
+    </script>
+    <script>// --- JAVASCRIPT TERBARU UNTUK GALERI ---
+function changeMainImage(src) {
+    document.getElementById('mainProductImg').src = src;
+}
+
+function openLightbox(imageSrc) {
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('lightboxImg');
+    modal.style.display = 'flex';
+    modalImg.src = imageSrc; // Memastikan gambar ukuran penuh yang tampil di modal
+}
+
+function closeLightbox() {
+    document.getElementById('lightboxModal').style.display = 'none';
+}
+</script>
+</body>
+</html>
