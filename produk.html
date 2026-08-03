@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Produk - Revscoll Store</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-font: 'Plus Jakarta Sans', sans-serif;
+            --elite-font: 'Playfair Display', serif;
+            --bg-color: #0f1016;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --header-bg: rgba(15, 16, 22, 0.9);
+            --border-color: rgba(212, 175, 55, 0.2);
+            --accent: #d4af37;
+        }
+        [data-theme="light"] {
+            --bg-color: #f8f9fa;
+            --text-color: #121212;
+            --card-bg: #ffffff;
+            --header-bg: rgba(248, 249, 250, 0.9);
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--primary-font);
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-size: 13px; 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .elite-font {
+            font-family: var(--elite-font);
+        }
+        @keyframes goldShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes wobbleEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+        .gold-glow-text {
+            background: linear-gradient(90deg, #cfac55 0%, #fff1b0 25%, #d4af37 50%, #fff1b0 75%, #cfac55 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShimmer 1s linear infinite, wobbleEffect 3s ease-in-out infinite;
+        }
+        .gold-glow-btn {
+            background: linear-gradient(90deg, #b8860b, #ffd700, #daa520, #ffd700, #b8860b) !important;
+            background-size: 200% auto !important;
+            color: #121212 !important;
+            animation: goldShimmer 1s linear infinite !important;
+            font-weight: 700 !important;
+            border: none !important;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .rotating-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            animation: spin 8s linear infinite;
+        }
+        .main-header {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .theme-toggle-btn, .hamburger-btn {
+            background: #d4af37;
+            border: 1px solid #ffd700;
+            color: #121212;
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .theme-toggle-btn:hover, .hamburger-btn:hover {
+            background: #ffd700;
+            transform: scale(1.05);
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            background: var(--bg-color);
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .mobile-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        .section-header h2 {
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .section-header p {
+            font-size: 0.85rem;
+        }
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.15);
+            border-color: #d4af37;
+        }
+        .product-slider {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: #0f1016;
+            overflow: hidden;
+        }
+        .slider-track {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .slide {
+            width: 25%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+            background: rgba(0,0,0,0.4);
+            padding: 3px 8px;
+            border-radius: 15px;
+            backdrop-filter: blur(4px);
+        }
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .dot.active {
+            background: #d4af37;
+            transform: scale(1.2);
+        }
+        .product-content {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .product-desc {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+        .product-footer-info {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 12px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+        }
+        .product-badge {
+            background: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .size-guide-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .size-guide-container h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .size-guide-container p {
+            font-size: 0.85rem;
+        }
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .size-table th, .size-table td {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+        }
+        .size-table th {
+            background: var(--card-bg);
+            color: #d4af37;
+            text-transform: uppercase;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.75rem;
+            margin-top: 50px;
+        }
+        @media (max-width: 768px) {
+            .catalog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header" id="home">
+        <div class="container header-container">
+            <div class="brand-wrapper">
+                <img src="assets/images/logo/logo-hitam.png" alt="Logo Revscoll Store" class="rotating-logo">
+                <div class="brand-text">
+                    <h1 class="brand-title elite-font gold-glow-text" style="font-size: 15px; margin: 0;">REVSCOLL STORE</h1>
+                    <p class="brand-subtitle gold-glow-text" style="font-size: 9px; margin: 0;">Official Premium Catalog</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Ganti Tema" title="Ganti Mode Terang/Gelap">🌓</button>
+                <button class="hamburger-btn" onclick="toggleMenu()" aria-label="Menu Toggle" title="Menu Navigasi">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="https://revscoll.my.id" onclick="toggleMenu()"><i class="fa-solid fa-house"></i> Beranda Utama</a>
+            <a href="https://revscoll.my.id/tentang-kami" onclick="toggleMenu()"><i class="fa-solid fa-store"></i> Tentang Kami</a>
+            <a href="https://revscoll.my.id/produk" onclick="toggleMenu()"><i class="fa-solid fa-box-open"></i> Produk Utama</a>
+            <a href="#kontak" onclick="toggleMenu()"><i class="fa-solid fa-address-book"></i> Kontak Kami</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-header">
+            <span class="gold-glow-text" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;">Koleksi Eksklusif</span>
+            <h2 class="elite-font gold-glow-text">Katalog Produk Sepatu</h2>
+            <p class="gold-glow-text">Pilih lini produk favorit Anda dengan kualitas terbaik.</p>
+        </div>
+
+        <div class="catalog-grid" id="catalogGrid"></div>
+
+        <div class="size-guide-container">
+            <h3 class="elite-font gold-glow-text">Panduan Ukuran (Size Chart Resmi)</h3>
+            <p class="gold-glow-text">Pastikan Anda memilih ukuran yang pas dan nyaman sebelum melakukan pemesanan.</p>
+            <div class="table-responsive">
+                <table class="size-table">
+                    <thead>
+                        <tr>
+                            <th class="gold-glow-text">EU / Size</th>
+                            <th class="gold-glow-text">US Men</th>
+                            <th class="gold-glow-text">UK</th>
+                            <th class="gold-glow-text">Panjang Kaki (cm)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="gold-glow-text">
+                        <tr><td>39</td><td>6.5</td><td>6.0</td><td>24.5 cm</td></tr>
+                        <tr><td>40</td><td>7.0</td><td>6.5</td><td>25.0 cm</td></tr>
+                        <tr><td>41</td><td>8.0</td><td>7.5</td><td>26.0 cm</td></tr>
+                        <tr><td>42</td><td>8.5</td><td>8.0</td><td>26.5 cm</td></tr>
+                        <tr><td>43</td><td>9.5</td><td>9.0</td><td>27.5 cm</td></tr>
+                        <tr><td>44</td><td>10.0</td><td>9.5</td><td>28.0 cm</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer id="kontak">
+        <p class="gold-glow-text">&copy; 2026 <span>Revscoll Store</span>. All Rights Reserved. Designed with Professional & Interactive UI.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+        }
+
+        const products = [
+            {
+                name: "Puma Suede XL",
+                desc: "Desain chunky klasik dengan lidah sepatu empuk dan tebal, menghadirkan kenyamanan maksimal serta gaya streetwear retro autentik.",
+                badge: "Best Seller",
+                images: [
+                    "assets/images/xl/xlhitamputih.png",
+                    "assets/images/xl/xlfullblack.png",
+                    "assets/images/xl/xlmerah.png",
+                    "assets/images/xl/xlbiru.png"
+                ],
+                productUrl: "https://revscoll.my.id/xl"
+            },
+            {
+                name: "Adidas Campus",
+                desc: "Sepatu ikonis berbahan suede lembut dengan sentuhan estetika era 80-an yang elegan, kasual, dan sangat digemari anak muda.",
+                badge: "Trending",
+                images: [
+                    "assets/images/campuss/campusshitamputih.png",
+                    "assets/images/campuss/campussfullblack.png",
+                    "assets/images/campuss/campussmaroon.png",
+                    "assets/images/campuss/campusshijau.png"
+                ],
+                productUrl: "https://revscoll.my.id/campuss"
+            },
+            {
+                name: "Ando All Variants Size",
+                desc: "Pilihan alas kaki lokal berkualitas tinggi yang kuat, tahan lama, dan sangat nyaman digunakan untuk aktivitas sekolah harian.",
+                badge: "Local Pride",
+                images: [
+                    "assets/images/ando/andohitamputih.png",
+                    "assets/images/ando/andopink.png",
+                    "assets/images/abdo/andofullblack.png"
+                ],
+                productUrl: "https://revscoll.my.id/ando"
+            },
+            {
+                name: "Ortuseight Hyperblast 2.0",
+                desc: "Sepatu lari profesional dengan teknologi sol ringan, empuk, serta sirkulasi udara optimal untuk performa olahraga terbaik Anda.",
+                badge: "Sports Series",
+                images: [
+                    "assets/images/ortus/ortus1.png",
+                    "assets/images/ortus/ortus2.png",
+                    "assets/images/ortus/ortus3.png"
+                ],
+                productUrl: "https://revscoll.my.id/ortus"
+            },
+            {
+                name: "Adidas Samba",
+                desc: "Legendaris sepatu indoor football yang bertransformasi menjadi ikon fashion streetwear global dengan siluet ramping dan elegan.",
+                badge: "Iconic",
+                images: [
+                    "assets/images/samba/samba1.png",
+                    "assets/images/samba/samba2.png",
+                    "assets/images/samba/samba3.png",
+                    "assets/images/samba/samba5.png"
+                ],
+                productUrl: "https://revscoll.my.id/samba"
+            },
+            {
+                name: "Puma Park Life Style",
+                desc: "Kombinasi sempurna antara kenyamanan kasual sehari-hari dan ketahanan material premium untuk menemani setiap langkah aktif Anda.",
+                badge: "New Arrival",
+                images: [
+                    "assets/images/park/park1.png",
+                    "assets/images/park/park2.png",
+                    "assets/images/park/park3.png"
+                ],
+                productUrl: "https://revscoll.my.id/park"
+            }
+        ];
+
+        const grid = document.getElementById("catalogGrid");
+
+        products.forEach((prod, index) => {
+            const card = document.createElement("div");
+            card.className = "product-card";
+
+            let slidesHtml = '';
+            let dotsHtml = '';
+            prod.images.forEach((img, i) => {
+                slidesHtml += `<div class="slide"><img src="${img}" alt="${prod.name} foto ${i+1}"></div>`;
+                dotsHtml += `<span class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`;
+            });
+
+            card.innerHTML = `
+                <div class="product-slider" id="slider-${index}">
+                    <div class="slider-track" id="track-${index}">
+                        ${slidesHtml}
+                    </div>
+                    <div class="slider-dots" id="dots-${index}">
+                        ${dotsHtml}
+                    </div>
+                </div>
+                <div class="product-content">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <h3 class="product-title elite-font gold-glow-text">${prod.name}</h3>
+                            <span class="product-badge">${prod.badge}</span>
+                        </div>
+                        <p class="product-desc gold-glow-text">${prod.desc}</p>
+                    </div>
+                    <div>
+                        <div class="product-footer-info">
+                            <span style="font-size: 0.75rem;" class="gold-glow-text"><i class="fa-solid fa-check-circle" style="color: #34d399;"></i> Stok Tersedia</span>
+                        </div>
+                        <a href="${prod.productUrl}" target="_blank" class="btn-gold-custom gold-glow-btn" style="display:block; text-align:center; padding:10px; border-radius:6px; text-decoration:none; font-size:12px;">
+                            Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            grid.appendChild(card);
+
+            let currentSlide = 0;
+            const track = document.getElementById(`track-${index}`);
+            const dotsContainer = document.getElementById(`dots-${index}`);
+            const dots = dotsContainer.querySelectorAll('.dot');
+            const totalSlides = prod.images.length;
+
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                track.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+                dots.forEach((d, dIdx) => {
+                    d.classList.toggle('active', dIdx === currentSlide);
+                });
+            }, 3000);
+
+            dots.forEach((dot, dIdx) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = dIdx;
+                    track.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+                    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+                });
+            });
+        });
+    </script>
+</body>
+</html>
