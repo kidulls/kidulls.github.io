@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVSCOLL STORE - Adizero Evo SL Premium</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Tambahan & Efek Gaya Premium -->
+    <style>
+        :root {
+            --primary-font: 'Plus Jakarta Sans', sans-serif;
+            --elite-font: 'Playfair Display', serif;
+            --bg-color: #0f1016;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --header-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f4f4f9;
+            --text-color: #121212;
+            --card-bg: rgba(0, 0, 0, 0.03);
+            --header-bg: rgba(0, 0, 0, 0.05);
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: var(--primary-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .elite-font {
+            font-family: var(--elite-font);
+        }
+
+        /* Efek Berkilauan Emas (Gold Shimmer) Setiap 1 Detik */
+        @keyframes goldShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes wobbleEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        .gold-glow-text {
+            background: linear-gradient(90deg, #cfac55 0%, #fff1b0 25%, #d4af37 50%, #fff1b0 75%, #cfac55 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShimmer 1s linear infinite, wobbleEffect 3s ease-in-out infinite;
+        }
+
+        .gold-glow-btn {
+            background: linear-gradient(90deg, #b8860b, #ffd700, #daa520, #ffd700, #b8860b);
+            background-size: 200% auto;
+            color: #121212 !important;
+            animation: goldShimmer 1s linear infinite;
+            font-weight: 800;
+        }
+
+        /* Header Styling */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .brand-logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Tombol Tema & Hamburger */
+        .theme-toggle-btn, .hamburger-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle-btn:hover, .hamburger-btn:hover {
+            background: #d4af37;
+            color: #121212;
+        }
+
+        /* Mobile Menu Drawer */
+        .nav-drawer {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--header-bg);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .nav-drawer a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: color 0.2s;
+        }
+
+        .nav-drawer a:hover {
+            color: #d4af37;
+        }
+
+        /* Gallery Scroll */
+        .gallery-wrapper {
+            margin: 25px 0;
+        }
+        .gallery-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .gallery-scroll {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            gap: 12px;
+            padding-bottom: 10px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .gallery-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        .gallery-scroll::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.4);
+            border-radius: 4px;
+        }
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease, filter 0.3s ease;
+        }
+        .gallery-item:hover {
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+        }
+        .gallery-item img:hover {
+            transform: scale(1.1);
+            filter: brightness(1.15);
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 35px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .lightbox-close:hover {
+            color: #d4af37;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scaleUp {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Product Card & Form Styling */
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .media-container video {
+            width: 100%;
+            border-radius: 12px;
+            outline: none;
+        }
+        .product-meta {
+            margin: 20px 0;
+        }
+        .product-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .product-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--header-bg);
+            color: var(--text-color);
+            font-family: var(--primary-font);
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #d4af37;
+            outline: none;
+        }
+        .btn-gold-custom {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 16px;
+            transition: transform 0.2s, filter 0.2s;
+        }
+        .btn-gold-custom:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header & Nav Compact -->
+    <header class="site-header">
+        <div class="header-left">
+            <img src="assets/images/logo/logo-hitam.png" alt="Logo REVSCOLL" class="brand-logo-img">
+            <div class="brand-logo elite-font gold-glow-text">
+                REVSCOLL<span>STORE</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <!-- Tombol Toggle Terang/Gelap -->
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="Ganti Tema">🌓</button>
+            <!-- Tombol Hamburger Menu -->
+            <button class="hamburger-btn" onclick="toggleMenu()" title="Menu">☰</button>
+        </div>
+    </header>
+
+    <!-- Menu Drawer Dinamis -->
+    <nav class="nav-drawer" id="navDrawer">
+        <a href="https://revscoll.my.id" onclick="toggleMenu()">Beranda</a>
+        <a href="https://revscoll.my.id/produk" onclick="toggleMenu()">Semua Produk</a>
+        <a href="#orderForm" onclick="toggleMenu()">Kontak</a>
+        <a href="https://revscoll.my.id/tentang-kami" onclick="toggleMenu()">Tentang Kami</a>
+    </nav>
+
+    <!-- Main Card Product -->
+    <main class="product-card" id="cardProduct">
+        <!-- Bagian Video Produk (Bisa diganti source videonya) -->
+        <div class="media-container">
+            <video autoplay muted loop playsinline>
+                <source src="assets/video/adizero.mp4" type="video/mp4">
+                Browser Anda tidak mendukung tag video.
+            </video>
+        </div>
+
+        <!-- Detail Produk -->
+        <div class="product-meta">
+            <div class="product-title elite-font gold-glow-text">Adizero Evo SL Premium</div>
+            <div class="product-desc gold-glow-text">
+                Adizero Evo SL Premium<br>
+                Material: Breathable mesh berkualitas tinggi yang ringan dan tahan lama.<br>
+                Desain: Tampilan sporty elegan yang dirancang untuk performa maksimal sekaligus menunjang gaya kasual harian Anda.<br>
+                Kenyamanan: Sol empuk dengan dukungan sirkulasi udara optimal untuk aktivitas lari maupun santai.<br>
+                Promo Spesial: Dapatkan penawaran diskon khusus hari ini langsung dari Revscoll Store
+            </div>
+        </div>
+
+        <!-- Bagian Foto Produk Mendatar (Horizontal Scroll) -->
+        <div class="gallery-wrapper">
+            <div class="gallery-title">
+                <span class="elite-font gold-glow-text">Galeri Foto Produk</span>
+                <span style="font-size:10px; opacity: 0.7;" class="gold-glow-text">Geser & Klik →</span>
+            </div>
+            <div class="gallery-scroll" id="photoGallery">
+                <div class="gallery-item" onclick="openLightbox('assets/images/adzr-htm-pth.png')">
+                    <img src="assets/images/adzr-htm-pth.png" alt="Hitam List Putih" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('assets/images/adzr-htm-silver.png')">
+                    <img src="assets/images/adzr-htm-silver.png" alt="Hitam List Silver" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('assets/images/adizero-hitam-merah.png')">
+                    <img src="assets/images/adizero-hitam-merah.png" alt="Hitam List Merah" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('assets/images/adizero-hitam-stabilo.png')">
+                    <img src="assets/images/adizero-hitam-stabilo.png" alt="Hitam List Stabilo" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('assets/images/adizero-putih-hitam.png')">
+                    <img src="assets/images/adizero-putih-hitam.png" alt="Putih List Hitam" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('assets/images/adizero-putih-merah.png')">
+                    <img src="assets/images/adizero-putih-merah.png" alt="Putih List Merah" loading="lazy">
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Order Terintegrasi WhatsApp -->
+        <div class="order-form-container" id="orderForm">
+            <div class="form-section-title elite-font gold-glow-text" style="margin-bottom: 15px;">
+                <span>📝 Form Pemesanan Produk</span>
+            </div>
+            <form onsubmit="sendToWhatsApp(event)">
+                <div class="form-group">
+                    <label class="form-label elite-font gold-glow-text" for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" class="form-input" placeholder="Masukkan nama lengkap Anda" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label elite-font gold-glow-text" for="no_hp">Nomor HP / WhatsApp</label>
+                    <input type="tel" id="no_hp" class="form-input" placeholder="Contoh: 081234567890" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label elite-font gold-glow-text" for="warna">Variasi Warna</label>
+                    <select id="warna" class="form-select" onchange="updateSizeOptions()" required>
+                        <option value="" disabled selected>-- Pilih Warna Varian --</option>
+                        <option value="Hitam List Putih">Hitam List Putih</option>
+                        <option value="Hitam List Silver">Hitam List Silver</option>
+                        <option value="Hitam List Merah">Hitam List Merah</option>
+                        <option value="Hitam List Stabilo">Hitam List Stabilo</option>
+                        <option value="Putih List Hitam">Putih List Hitam</option>
+                        <option value="Putih List Merah">Putih List Merah</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label elite-font gold-glow-text" for="ukuran">Variasi Ukuran (EUR)</label>
+                    <select id="ukuran" class="form-select" required>
+                        <option value="" disabled selected>-- Pilih Warna Terlebih Dahulu --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label elite-font gold-glow-text" for="alamat">Alamat Lengkap (Termasuk Patokan Rumah)</label>
+                    <textarea id="alamat" class="form-textarea" placeholder="Contoh: Jl. Mawar No. 10, RT 02/RW 05, Kelurahan... (Patokan: Sebelah minimarket cat hijau)" required></textarea>
+                </div>
+                <button type="submit" class="btn-gold-custom gold-glow-btn elite-font">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                    Pesan via WhatsApp
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Modal Lightbox untuk Efek Klik Foto -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <!-- JavaScript untuk Lightbox, Menu, Tema, & Fitur Form -->
+    <script>
+        function toggleMenu() {
+            const drawer = document.getElementById('navDrawer');
+            drawer.style.display = drawer.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
+        }
+
+        function openLightbox(imageSrc) {
+            const modal = document.getElementById('lightboxModal');
+            const modalImg = document.getElementById('lightboxImg');
+            modal.style.display = 'flex';
+            modalImg.src = imageSrc;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').style.display = 'none';
+        }
+
+        function updateSizeOptions() {
+            const ukuranSelect = document.getElementById('ukuran');
+            ukuranSelect.innerHTML = `
+                <option value="" disabled selected>-- Pilih Ukuran --</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+            `;
+        }
+
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const noHp = document.getElementById('no_hp').value;
+            const warna = document.getElementById('warna').value;
+            const ukuran = document.getElementById('ukuran').value;
+            const alamat = document.getElementById('alamat').value;
+
+            const waNumber = "628987686501"; // Nomor WhatsApp tujuan
+            const message = `Halo REVSCOLL STORE, saya ingin memesan:%0A%0A*Produk:* Adizero Evo SL Premium%0A*Nama:* ${nama}%0A*No HP:* ${noHp}%0A*Warna:* ${warna}%0A*Ukuran:* ${ukuran}%0A*Alamat:* ${alamat}%0A%0AMohon diproses ya Kak, terima kasih!`;
+            
+            window.open(`https://wa.me/${waNumber}?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
