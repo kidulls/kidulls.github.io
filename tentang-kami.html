@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - REVSCOLL STORE | Resmi & Terpercaya</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Variabel untuk Tema Terang & Gelap (Sama Persis dengan Index) */
+        :root {
+            --primary-font: 'Plus Jakarta Sans', sans-serif;
+            --elite-font: 'Playfair Display', serif;
+            --bg-color: #0f1016;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --header-bg: rgba(15, 16, 22, 0.9);
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8f9fa;
+            --text-color: #121212;
+            --card-bg: #ffffff;
+            --header-bg: rgba(248, 249, 250, 0.9);
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--primary-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .elite-font {
+            font-family: var(--elite-font);
+        }
+
+        /* Efek Berkilauan Emas (Gold Shimmer) Setiap 1 Detik */
+        @keyframes goldShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes wobbleEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        .gold-glow-text {
+            background: linear-gradient(90deg, #cfac55 0%, #fff1b0 25%, #d4af37 50%, #fff1b0 75%, #cfac55 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShimmer 1s linear infinite, wobbleEffect 3s ease-in-out infinite;
+        }
+
+        .gold-glow-btn {
+            background: linear-gradient(90deg, #b8860b, #ffd700, #daa520, #ffd700, #b8860b) !important;
+            background-size: 200% auto !important;
+            color: #121212 !important;
+            animation: goldShimmer 1s linear infinite !important;
+            font-weight: 800 !important;
+            border: none !important;
+        }
+
+        /* Header Styling & Actions */
+        .main-header {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Tombol Tema & Hamburger yang Jelas Terlihat */
+        .theme-toggle-btn, .hamburger-btn {
+            background: #d4af37;
+            border: 1px solid #ffd700;
+            color: #121212;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover, .hamburger-btn:hover {
+            background: #ffd700;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--bg-color);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: color 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            color: #d4af37;
+        }
+
+        /* Content Container Layout */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+            max-width: 580px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .store-name {
+            font-size: 28px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .description {
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .legal-info {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .legal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #d4af37;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .visit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 24px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-footer {
+            margin-top: 20px;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            opacity: 0.8;
+        }
+
+        .visitor-count {
+            font-weight: 700;
+            color: #d4af37;
+        }
+
+        /* Footer Bawah Klasik */
+        .dynamic-footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section (Sama Persis dengan Index) -->
+    <header class="main-header" id="home">
+        <div class="container-header header-container" style="max-width: 100%; width: 100%;">
+            <!-- Logo & Judul Header -->
+            <a href="index.html" class="brand-wrapper">
+                <img src="assets/images/logo-hitam.png" alt="Logo Revscoll Store" class="brand-logo">
+                <div class="brand-text">
+                    <h1 class="brand-title elite-font gold-glow-text" style="font-size: 18px; margin: 0; text-align: left;">REVSCOLL STORE</h1>
+                    <p class="brand-subtitle gold-glow-text" style="font-size: 10px; margin: 0; text-align: left;">Distributor Sepatu Grosir & Eceran Terpercaya</p>
+                </div>
+            </a>
+
+            <!-- Tombol Aksi Kanan (Tema & Hamburger) -->
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Ganti Tema" title="Ganti Mode Terang/Gelap">🌓</button>
+                <button class="hamburger-btn" onclick="toggleMenu()" aria-label="Menu Toggle" title="Menu Navigasi">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile/Desktop Toggle -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" onclick="toggleMenu()"><i class="fa-solid fa-house"></i> Beranda Utama</a>
+            <a href="https://revscoll.my.id/tentang-kami" onclick="toggleMenu()"><i class="fa-solid fa-store"></i> Tentang Kami</a>
+            <a href="https://revscoll.my.id/produk" onclick="toggleMenu()"><i class="fa-solid fa-box-open"></i> Katalog Produk</a>
+            <a href="index.html#kontak" onclick="toggleMenu()"><i class="fa-solid fa-address-book"></i> Kontak Kami</a>
+        </div>
+    </header>
+
+    <!-- Konten Utama Halaman Tentang Kami / Legalitas -->
+    <div class="main-content">
+        <div class="container">
+            <div class="store-name elite-font gold-glow-text">REVSCOLL STORE</div>
+
+            <div>
+                <span class="store-badge"><i class="fa-solid fa-shield-halved"></i> Resmi & Terverifikasi</span>
+            </div>
+            
+            <div class="description gold-glow-text">
+                Selamat datang di Revscoll Store, pusat distributor sepatu grosir dan eceran terkemuka di Indonesia yang telah lama dipercaya oleh ribuan pelanggan setia. Kami berkomitmen penuh untuk selalu menghadirkan produk alas kaki dengan standar kualitas terbaik, kenyamanan maksimal, serta pilihan model yang selalu mengikuti tren terkini guna menunjang penampilan dan aktivitas harian Anda. Dengan pengalaman dan jaringan distribusi yang luas, kami siap melayani berbagai kebutuhan pesanan skala besar maupun kecil secara profesional, cepat, dan amanah di seluruh wilayah Nusantara.
+            </div>
+
+            <div class="legal-info">
+                <div class="legal-header elite-font">
+                    <i class="fa-solid fa-file-contract"></i> Legalitas & Kredibilitas Perusahaan
+                </div>
+                <span class="gold-glow-text" style="display:inline-block;">
+                    Seluruh aktivitas operasional bisnis kami dijalankan secara legal, transparan, dan profesional di bawah naungan badan hukum resmi yang diakui oleh negara:<br><br>
+                    • Nama Badan Hukum: <strong style="color: #d4af37;">PT REVS COLL SHOES MANDIRI</strong><br>
+                    • Nomor SK Kemenkumham / AHU: <strong style="color: #d4af37;">AHU-056496.AH.01.30.Tahun 2024</strong><br><br>
+                    Legalitas ini menjadi wujud nyata komitmen kami dalam memberikan rasa aman, jaminan kepercayaan, serta perlindungan transaksi yang maksimal bagi setiap mitra bisnis maupun konsumen retail kami di seluruh Indonesia.
+                </span>
+            </div>
+
+            <!-- Link ke Beranda -->
+            <a href="index.html" class="visit-btn gold-glow-btn" id="backBtn">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda Utama
+            </a>
+
+            <div class="interactive-footer gold-glow-text">
+                <i class="fa-solid fa-users" style="color: #d4af37;"></i> Pengunjung hari ini: <span class="visitor-count" id="visitorCount">1,420</span> orang
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Selaras -->
+    <footer class="dynamic-footer">
+        <p class="gold-glow-text">&copy; 2026 Revscoll Store. All Rights Reserved. Dibangun secara Dinamis & Profesional.</p>
+    </footer>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                html.setAttribute('data-theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
+        }
+
+        // Simulasi penambahan angka pengunjung secara dinamis
+        document.addEventListener("DOMContentLoaded", () => {
+            const visitorElement = document.getElementById('visitorCount');
+            let currentCount = 1420;
+            
+            setTimeout(() => {
+                currentCount += Math.floor(Math.random() * 5) + 1;
+                visitorElement.textContent = currentCount.toLocaleString();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
