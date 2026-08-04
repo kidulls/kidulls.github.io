@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebijakan Pengiriman - REVSCOLL STORE | Resmi & Terpercaya</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variabel untuk Tema Terang & Gelap (Selaras dengan Index & Kebijakan Lainnya) */
+        :root {
+            --primary-font: 'Plus Jakarta Sans', sans-serif;
+            --elite-font: 'Playfair Display', serif;
+            --bg-color: #0f1016;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --header-bg: rgba(15, 16, 22, 0.9);
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8f9fa;
+            --text-color: #121212;
+            --card-bg: #ffffff;
+            --header-bg: rgba(248, 249, 250, 0.9);
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--primary-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .elite-font {
+            font-family: var(--elite-font);
+        }
+
+        /* Efek Berkilauan Emas (Gold Shimmer) Setiap 1 Detik */
+        @keyframes goldShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes wobbleEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        .gold-glow-text {
+            background: linear-gradient(90deg, #cfac55 0%, #fff1b0 25%, #d4af37 50%, #fff1b0 75%, #cfac55 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShimmer 1s linear infinite, wobbleEffect 3s ease-in-out infinite;
+        }
+
+        .gold-glow-btn {
+            background: linear-gradient(90deg, #b8860b, #ffd700, #daa520, #ffd700, #b8860b) !important;
+            background-size: 200% auto !important;
+            color: #121212 !important;
+            animation: goldShimmer 1s linear infinite !important;
+            font-weight: 800 !important;
+            border: none !important;
+        }
+
+        /* Header Styling & Actions (Sama persis dengan index & halaman lain) */
+        .main-header {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle-btn, .hamburger-btn {
+            background: #d4af37;
+            border: 1px solid #ffd700;
+            color: #121212;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover, .hamburger-btn:hover {
+            background: #ffd700;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--bg-color);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: color 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            color: #d4af37;
+        }
+
+        /* Layout Konten Utama dengan Ukuran Huruf Kecil & Rapi */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 35px 30px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .section-header-hero {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .section-header-hero h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .section-header-hero p {
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .policy-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .policy-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .policy-section h2 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            border-left: 3px solid #d4af37;
+            padding-left: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .policy-section p, .policy-section li {
+            font-size: 12.5px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            text-align: justify;
+            opacity: 0.9;
+        }
+
+        .policy-section ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 3px solid #d4af37;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 12px 0;
+            font-size: 12px;
+        }
+
+        .footer-action {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .visit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        /* Footer Bawah Klasik */
+        .dynamic-footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section (Sama Persis dengan Index) -->
+    <header class="main-header" id="home">
+        <div class="header-container" style="max-width: 100%; width: 100%;">
+            <!-- Logo & Judul Header -->
+            <a href="index.html" class="brand-wrapper">
+                <img src="assets/images/logo-hitam.png" alt="Logo Revscoll Store" class="brand-logo">
+                <div class="brand-text">
+                    <h1 class="brand-title elite-font gold-glow-text" style="font-size: 18px; margin: 0; text-align: left;">REVSCOLL STORE</h1>
+                    <p class="brand-subtitle gold-glow-text" style="font-size: 10px; margin: 0; text-align: left;">Distributor Sepatu Grosir & Eceran Terpercaya</p>
+                </div>
+            </a>
+
+            <!-- Tombol Aksi Kanan (Tema & Hamburger) -->
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Ganti Tema" title="Ganti Mode Terang/Gelap">🌓</button>
+                <button class="hamburger-btn" onclick="toggleMenu()" aria-label="Menu Toggle" title="Menu Navigasi">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile/Desktop Toggle -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" onclick="toggleMenu()"><i class="fa-solid fa-house"></i> Beranda Utama</a>
+            <a href="index.html#tentang" onclick="toggleMenu()"><i class="fa-solid fa-store"></i> Tentang Kami</a>
+            <a href="index.html#produk" onclick="toggleMenu()"><i class="fa-solid fa-box-open"></i> Katalog Produk</a>
+            <a href="index.html#kontak" onclick="toggleMenu()"><i class="fa-solid fa-address-book"></i> Kontak Kami</a>
+        </div>
+    </header>
+
+    <!-- Konten Utama Kebijakan Pengiriman -->
+    <div class="main-content">
+        <div class="container">
+            <div class="section-header-hero">
+                <h1 class="elite-font gold-glow-text">Kebijakan Pengiriman</h1>
+                <p class="gold-glow-text">Standar Operasional Logistik Ekspedisi Grosir & Eceran Revscoll Store</p>
+            </div>
+
+            <div class="content">
+                <!-- Section 1 -->
+                <div class="policy-section">
+                    <h2 class="elite-font gold-glow-text"><i class="fa-solid fa-clock"></i> 1. Waktu Operasional & Pemrosesan Pesanan</h2>
+                    <p class="gold-glow-text">Tim operasional logistik REVSCOLL STORE melayani pemrosesan pesanan Anda setiap hari kerja (Senin hingga Sabtu). Setiap pesanan masuk yang status pembayarannya telah terverifikasi lunas sebelum pukul <strong>15.00 WIB</strong> akan langsung diproses dan diserahkan kepada pihak kurir pada hari yang sama.</p>
+                    <p class="gold-glow-text">Adapun pesanan yang masuk melewati pukul 15.00 WIB, jatuh pada hari Minggu, atau bertepatan dengan hari Libur Nasional, akan dijadwalkan untuk diproses pada hari kerja berikutnya.</p>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="policy-section">
+                    <h2 class="elite-font gold-glow-text"><i class="fa-solid fa-truck-fast"></i> 2. Mitra Jasa Ekspedisi & Logistik</h2>
+                    <p class="gold-glow-text">Guna menjamin keamanan, kecepatan, dan ketepatan waktu sampai di alamat tujuan, kami telah menjalin kerja sama strategis dengan berbagai perusahaan jasa kurir terkemuka di Indonesia. Beberapa pilihan ekspedisi yang tersedia meliputi:</p>
+                    <ul>
+                        <li class="gold-glow-text">JNE (Layanan Reguler, YES, hingga Kargo JTR)</li>
+                        <li class="gold-glow-text">J&T Express & J&T Cargo</li>
+                        <li class="gold-glow-text">SiCepat Ekspres (Reguler, BEST, Halu)</li>
+                        <li class="gold-glow-text">Anteraja</li>
+                        <li class="gold-glow-text">Layanan Ekspedisi Kargo Khusus untuk pengiriman grosir/partai besar skala masif (Indah Cargo, Dakota, dll).</li>
+                    </ul>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="policy-section">
+                    <h2 class="elite-font gold-glow-text"><i class="fa-solid fa-box-open"></i> 3. Standar Pengemasan (Packing) Profesional</h2>
+                    <p class="gold-glow-text">Kami memastikan seluruh produk alas kaki yang dikirimkan telah melewati tahap pemeriksaan kualitas ketat <em>(Quality Control)</em>. Setiap pasang sepatu dikemas menggunakan <em>inner box</em> original serta dilapisi pelindung tambahan (bubble wrap berlapis atau plastik packing kedap air) demi menjaga kondisi fisik box maupun sepatu tetap utuh tanpa cacat selama perjalanan logistik kurir.</p>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="policy-section">
+                    <h2 class="elite-font gold-glow-text"><i class="fa-solid fa-money-bill-wave"></i> 4. Ketentuan Ongkos Kirim (Ongkir)</h2>
+                    <p class="gold-glow-text">Biaya tarif pengiriman ditanggung sepenuhnya oleh pihak pembeli, kecuali apabila terdapat program promosi khusus (seperti subsidi atau gratis ongkir) yang sedang berlaku di toko kami. Besaran tarif dihitung secara otomatis oleh sistem berdasarkan berat total/dimensi volume paket serta kecamatan kota tujuan pengiriman dari pusat gudang kami di Tangerang.</p>
+                </div>
+
+                <!-- Section 5 -->
+                <div class="policy-section">
+                    <h2 class="elite-font gold-glow-text"><i class="fa-solid fa-triangle-exclamation"></i> 5. Estimasi Waktu & Kendala Ekspedisi</h2>
+                    <p class="gold-glow-text">Estimasi lama durasi perjalanan paket sepenuhnya berada di bawah kewenangan operasional pihak perusahaan ekspedisi pilihan. REVSCOLL STORE tidak bertanggung jawab atas keterlambatan pengiriman yang diakibatkan oleh kondisi cuaca ekstrem, gangguan jalur lintas, kendala internal kurir, maupun peristiwa kahar (force majeure). Meskipun demikian, tim kami siap membantu melakukan pelacakan dan koordinasi lanjutan kepada pihak agen kurir terkait jika terjadi kendala.</p>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="policy-section">
+                    <h2 class="elite-font gold-glow-text"><i class="fa-solid fa-rotate-left"></i> 6. Klaim Kerusakan & Kehilangan Akibat Pengiriman</h2>
+                    <p class="gold-glow-text">Apabila paket yang diterima mengalami kerusakan parah atau hilang dalam proses pengiriman, pembeli diwajibkan segera melaporkan kepada Admin kami selambat-lambatnya 1 x 24 jam setelah status kurir mencatat paket "Delivered", dengan wajib menyertakan bukti rekaman <strong>Video Unboxing</strong> utuh tanpa jeda sebagai syarat utama pengajuan klaim asuransi pengiriman.</p>
+                </div>
+
+                <div class="highlight-box gold-glow-text">
+                    "Memiliki pertanyaan khusus terkait pengiriman partai besar (grosir) dengan ekspedisi kargo khusus ke luar pulau? Silakan hubungi tim layanan pelanggan WhatsApp kami untuk mendapatkan solusi terbaik."
+                </div>
+            </div>
+
+            <!-- Tombol Kembali ke Beranda -->
+            <div class="footer-action">
+                <a href="index.html" class="visit-btn gold-glow-btn">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda Utama
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Selaras -->
+    <footer class="dynamic-footer">
+        <p class="gold-glow-text">&copy; 2026 Revscoll Store. All Rights Reserved. Dibangun secara Dinamis & Profesional.</p>
+    </footer>
+
+    <!-- JavaScript Interaktif (Tema & Menu Mobile) -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                html.setAttribute('data-theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
+        }
+    </script>
+</body>
+</html>
